@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+
+
+<link rel="canonical" href="http://example.org/2017-04-10-go-cc/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Concurrent-and-parallel - My New Hugo Site</title>
+    
+<meta name="description" content="并发与并行">
+
+<meta property="og:title" content="Concurrent-and-parallel - My New Hugo Site">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/2017-04-10-go-cc/">
+<meta property="og:image" content="http://example.org/images/default.png">
+<meta property="og:site_name" content="My New Hugo Site">
+<meta property="og:description" content="并发与并行">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="My New Hugo Site">
+<meta name="twitter:url" content="http://example.org/2017-04-10-go-cc/">
+<meta name="twitter:title" content="Concurrent-and-parallel - My New Hugo Site">
+<meta name="twitter:description" content="并发与并行">
+<meta name="twitter:image" content="http://example.org/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"http://example.org/"
+    },
+    "headline": "Concurrent-and-parallel - My New Hugo Site",
+    "image": {
+      "@type": "ImageObject",
+      "url": "http://example.org/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "0001-01-01T00:00:00JST",
+    "dateModified": "0001-01-01T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "My New Hugo Site"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "My New Hugo Site",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "http://example.org/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "并发与并行"
+  }
+</script>
+
+
+    <link href="http://example.org/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://example.org/">My New Hugo Site</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="http://example.org/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Concurrent-and-parallel</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+
+    <h1 class="title">Concurrent-and-parallel</h1>
+  </header>
+
+  
+
+  <div class="article-body">
+
+<h1 id="go-并发与并行">go 并发与并行</h1>
+
+<p><img src="http://mmbiz.qpic.cn/mmbiz/8XkvNnTiapONV8v1Gc4B1lpibW1HYC2Wxj5FrgXtg6VOiawesq7gODDAkzbtFHjibibXByj0YcGj4r17sia1T0suX80w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="" /></p>
+
+<ul>
+<li><p>并发（concurrency） 并发的关注点在于任务切分。举例来说，你是一个创业公司的CEO，开始只有你一个人，你一人分饰多角，一会做产品规划，一会写代码，一会见客户，虽然你不能见客户的同时写代码，但由于你切分了任务，分配了时间片，表现出来好像是多个任务一起在执行。</p></li>
+
+<li><p>并行（parallelism） 并行的关注点在于同时执行。还是上面的例子，你发现你自己太忙了，时间分配不过来，于是请了工程师，产品经理，市场总监，各司一职，这时候多个任务可以同时执行了。</p></li>
+</ul>
+
+<p>GreenThread</p>
+
+<ul>
+<li><p>用户空间 首先是在用户空间，避免内核态和用户态的切换导致的成本。</p></li>
+
+<li><p>由语言或者框架层调度</p></li>
+
+<li><p>更小的栈空间允许创建大量实例（百万级别）</p></li>
+</ul>
+
+<p>几个概念</p>
+
+<ul>
+<li><p>Continuation 这个概念不熟悉 FP 编程的人可能不太熟悉，不过这里可以简单的顾名思义，可以理解为让我们的程序可以暂停，然后下次调用继续（contine）从上次暂停的地方开始的一种机制。相当于程序调用多了一种入口。</p></li>
+
+<li><p>Coroutine 是 Continuation 的一种实现，一般表现为语言层面的组件或者类库。主要提供 yield，resume 机制。</p></li>
+
+<li><p>Fiber 和 Coroutine 其实是一体两面的，主要是从系统层面描述，可以理解成 Coroutine 运行之后的东西就是 Fiber。</p></li>
+</ul>
+
+<h2 id="goroutine">Goroutine</h2>
+
+<p>Goroutine 其实就是前面 GreenThread 系列解决方案的一种演进和实现。</p>
+
+<ul>
+<li><p>首先，它内置了 Coroutine 机制。因为要用户态的调度，必须有可以让代码片段可以暂停/继续的机制。</p></li>
+
+<li><p>其次，它内置了一个调度器，实现了 Coroutine 的多线程并行调度，同时通过对网络等库的封装，对用户屏蔽了调度细节。</p></li>
+
+<li><p>最后，提供了 Channel 机制，用于 Goroutine 之间通信，实现 CSP 并发模型（Communicating Sequential Processes）。因为 Go 的 Channel 是通过语法关键词提供的，对用户屏蔽了许多细节。其实 Go 的 Channel 和 Java 中的 SynchronousQueue 是一样的机制，如果有 buffer 其实就是 ArrayBlockQueue。</p></li>
+</ul>
+
+<p>Goroutine 调度器</p>
+
+<p><img src="http://mmbiz.qpic.cn/mmbiz/8XkvNnTiapONV8v1Gc4B1lpibW1HYC2WxjBdfrFKyLDYfBh5qQibplFMoOiaeuKUMeY1ZLVUVmhbX6k7nPTnTTGoUg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="" /></p>
+
+<p>这个图一般讲 Goroutine 调度器的地方都会引用，想要仔细了解的可以看看原博客（小编：点击阅读原文获取）。这里只说明几点：</p>
+
+<ol>
+<li><p>M 代表系统线程，P 代表处理器（核），G 代表 Goroutine。Go 实现了 M : N 的调度，也就是说线程和 Goroutine 之间是多对多的关系。这点在许多GreenThread / Coroutine 的调度器并没有实现。比如 Java 1.1 版本之前的线程其实是 GreenThread（这个词就来源于 Java），但由于没实现多对多的调度，也就是没有真正实现并行，发挥不了多核的优势，所以后来改成基于系统内核的 Thread 实现了。</p></li>
+
+<li><p>某个系统线程如果被阻塞，排列在该线程上的 Goroutine 会被迁移。当然还有其他机制，比如 M 空闲了，如果全局队列没有任务，可能会从其他 M 偷任务执行，相当于一种 rebalance 机制。这里不再细说，有需要看专门的分析文章。</p></li>
+
+<li><p>具体的实现策略和我们前面分析的机制类似。系统启动时，会启动一个独立的后台线程（不在 Goroutine 的调度线程池里），启动 netpoll 的轮询。当有 Goroutine 发起网络请求时，网络库会将 fd（文件描述符）和 pollDesc（用于描述 netpoll 的结构体，包含因为读 / 写这个 fd 而阻塞的 Goroutine）关联起来，然后调用 runtime.gopark 方法，挂起当前的 Goroutine。当后台的 netpoll 轮询获取到 epoll（Linux 环境下）的 event，会将 event 中的 pollDesc 取出来，找到关联的阻塞 Goroutine，并进行恢复。</p></li>
+</ol>
+
+<p>Goroutine 是银弹么？</p>
+
+<p>Goroutine 很大程度上降低了并发的开发成本，是不是我们所有需要并发的地方直接 go func 就搞定了呢？</p>
+
+<p>Go 通过 Goroutine 的调度解决了 CPU 利用率的问题。但遇到其他的瓶颈资源如何处理？比如带锁的共享资源，比如数据库连接等。互联网在线应用场景下，如果每个请求都扔到一个 Goroutine 里，当资源出现瓶颈的时候，会导致大量的 Goroutine 阻塞，最后用户请求超时。这时候就需要用 Goroutine 池来进行控流，同时问题又来了：池子里设置多少个 Goroutine 合适？</p>
+
+<p>所以这个问题还是没有从更本上解决。</p>
+
+<p>go没有严格的内置的logical processor数量限制,但是go的runtime默认限制了每个program最多使用10,000个线程,可以通过SetMaxThreads修改.下图展示了Concurrency和Parallelism的区别 <img src="https://git.oschina.net/Meldoy/image/raw/master/Go_in_action/03.png" alt="" /></p>
+
+<h1 id="goroutine使用">goroutine使用</h1>
+
+<h2 id="go块">go块</h2>
+
+<p>go的用法很简单,如下. 如果没有最外面的括号{}(),会显示go块必须是一个函数调用.没有()只是一个函数的声明,有了()是一个调用(没有参数的)</p>
+
+<pre><code>go func() {
+  for _,n := range nums {
+    out &lt;- n
+  }
+  close(out)
+}()
+</code></pre>
+
+<h2 id="channel">channel</h2>
+
+<p>channel默认上是阻塞的，也就是说，如果Channel满了，就阻塞写，如果Channel空了，就阻塞读。于是，我们就可以使用这种特性来同步我们的发送和接收端。</p>
+
+<p><code>channel &lt;-</code>,发送一个新的值到通道中 <code>&lt;-channel</code>,从通道中接收一个值,这个更像有两层含义,一个是会返回一个结果,当做赋值来用:<code>msg := &lt;-channel</code>;另外一个含义是等待这个channel发送消息,所以还有一个等的含义在.所以如果你直接写<code>fmt.Print(&lt;-channel)</code>本意只是想输出下这个chan传来的值,但是其实他还会阻塞住等着channel来发.</p>
+
+<p>默认发送和接收操作是阻塞的，直到发送方和接收方都准备完毕。</p>
+
+<pre><code class="language-go">    func main() {
+        messages := make(chan string)
+        go func() { messages &lt;- &quot;ping&quot; }()
+        msg := &lt;-messages
+        fmt.Println(msg)
+    }
+</code></pre>
+
+<p>所以你要是这么写:是一辈子都不会执行到print的(会死锁)</p>
+
+<pre><code class="language-go">    func main() {
+        messages := make(chan string)
+        messages &lt;- &quot;ping&quot;
+        msg := &lt;-messages
+        fmt.Println(msg)
+    }
+</code></pre>
+
+<p>所以在一个go程中,发送<code>messages &lt;- &quot;msg&quot;</code>channel的时候,要格外小心,不然一不留神就死锁了.(解决方法:1. 用带缓存的chan; 2. 使用带有default的select发送)</p>
+
+<pre><code class="language-go">    select {
+    case messages &lt;- &quot;msg&quot;:
+        fmt.Println(&quot;sent message&quot;)
+    default:
+        fmt.Println(&quot;no message sent&quot;)
+    }
+</code></pre>
+
+<h3 id="range">range</h3>
+
+<p>用于channel的range是阻塞的.下面程序会显示deadloc,去掉注释就好了.</p>
+
+<pre><code class="language-go">    queue := make(chan string, 2)
+    //queue &lt;- &quot;one&quot;
+    //queue &lt;- &quot;two&quot;
+    //close(queue)
+    for elem := range queue {
+      fmt.Println(elem)
+    }
+</code></pre>
+
+<h3 id="通道缓冲">通道缓冲</h3>
+
+<p>加了缓存之后,就像你向channel发送消息的时候(<code>message &lt;- &quot;ping&quot;</code>),&ldquo;ping&rdquo;就已经发送出去了(到缓存).就像一个异步的队列?到时候,<code>&lt;-message</code>直接从缓存中取值就好了(异步&hellip;)</p>
+
+<p>但是你要这么写,利用通道缓冲,就可以.无缓冲的意味着只有在对应的接收(<code>&lt;-chan</code>)通道准备好接收时,才允许发送(<code>chan &lt;-</code>),可缓存通道允许在没有对应接收方的情况下，缓存限定数量的值。</p>
+
+<pre><code class="language-go">    func main() {
+      message := make(chan string,1)
+      message &lt;- &quot;ping&quot;
+      msg := &lt;-message
+      fmt.Print(msg)
+    }
+</code></pre>
+
+<p>要是多发一个<code>messages &lt;- &quot;channel&quot;</code>,<code>fatal error: all goroutines are asleep - deadlock!</code>,要是多接受一个<code>fmt.Println(&lt;-messages)</code>,会打印出<code>buffered channel</code>,然后报同样的error</p>
+
+<pre><code class="language-go">    func main() {
+        messages := make(chan string, 2)
+        messages &lt;- &quot;buffered&quot;
+        messages &lt;- &quot;channel&quot;
+        fmt.Println(&lt;-messages)
+        fmt.Println(&lt;-messages)
+    }
+</code></pre>
+
+<h3 id="通道同步">通道同步</h3>
+
+<p>使用通道同步,如果你把 <code>&lt;- done</code> 这行代码从程序中移除，程序甚至会在 worker还没开始运行时就结束了。</p>
+
+<pre><code class="language-go">    func worker(done chan bool) {
+        fmt.Print(&quot;working...&quot;)
+        time.Sleep(time.Second) // working
+        fmt.Println(&quot;done&quot;)
+        done &lt;- true
+    }
+    func main() {
+        done := make(chan bool, 1)
+        go worker(done)
+        &lt;-done //blocking 阻塞在这里,知道worker执行完毕
+    }
+</code></pre>
+
+<h3 id="发送方向">发送方向</h3>
+
+<p>可以指定这个通道是不是只用来发送或者接收值。这个特性提升了程序的类型安全性。pong 函数允许通道（pings）来接收数据，另一通道（pongs）来发送数据。</p>
+
+<pre><code class="language-go">    func ping(pings chan&lt;- string, msg string) {
+        pings &lt;- msg
+    }
+    
+    func pong(pings &lt;-chan string, pongs chan&lt;- string) {
+        msg := &lt;-pings
+        pongs &lt;- msg
+    }
+    
+    func main() {
+        pings := make(chan string, 1)
+        pongs := make(chan string, 1)
+        ping(pings, &quot;passed message&quot;)
+        pong(pings, pongs)
+        fmt.Println(&lt;-pongs)
+    }
+</code></pre>
+
+<h3 id="select">select</h3>
+
+<p>Go 的select 让你可以同时等待多个通道操作。(poll/epoll?) 注意select 要么写个死循环用超时,要不就定好次数.或者加上default让select变成非阻塞的</p>
+
+<pre><code class="language-go">    go func() {
+        time.Sleep(time.Second * 1)
+        c1 &lt;- &quot;one&quot;
+    }()
+    
+    go func() {
+        time.Sleep(time.Second * 2)
+        c2 &lt;- &quot;two&quot;
+    }()
+    
+    for i := 0; i &lt; 2; i++ {
+        select {
+        case msg1 := &lt;-c1:
+            fmt.Println(&quot;received&quot;, msg1)
+        case msg2 := &lt;-c2:
+            fmt.Println(&quot;received&quot;, msg2)
+        }
+    }
+</code></pre>
+
+<h3 id="超时处理">超时处理</h3>
+
+<p>其中<code>time.After</code>返回<code>&lt;-chan Time</code>,直接向select发送消息</p>
+
+<pre><code class="language-go">    select {
+    case res := &lt;-c1:
+        fmt.Println(res)
+    case &lt;-time.After(time.Second * 1):
+        fmt.Println(&quot;timeout 1&quot;)
+    }
+</code></pre>
+
+<h3 id="非阻塞通道操作">非阻塞通道操作</h3>
+
+<p>default,当监听的channel都没有准备好的时候，默认执行的.</p>
+
+<pre><code class="language-go">    select {
+    case msg := &lt;-messages:
+        fmt.Println(&quot;received message&quot;, msg)
+    default:
+        fmt.Println(&quot;no message received&quot;)
+    }
+</code></pre>
+
+<p>可以使用 select 语句来检测 chan 是否已经满了</p>
+
+<pre><code class="language-go">    ch := make (chan int, 1)
+    ch &lt;- 1
+    select {
+    case ch &lt;- 2:
+    default:
+        fmt.Println(&quot;channel is full !&quot;)
+    }
+</code></pre>
+
+<h3 id="通道关闭">通道关闭</h3>
+
+<p>一个非空的通道也是可以关闭的，但是通道中剩下的值仍然可以被接收到</p>
+
+<pre><code class="language-go">    queue := make(chan string, 2)
+    queue &lt;- &quot;one&quot;
+    queue &lt;- &quot;two&quot;
+    close(queue)
+    for elem := range queue {
+        fmt.Println(elem)
+    }
+</code></pre>
+
+<h3 id="定时器">定时器</h3>
+
+<p>在未来某一刻执行一次时使用的</p>
+
+<p>定时器表示在未来某一时刻的独立事件。你告诉定时器需要等待的时间，然后它将提供一个用于通知的通道。可以显示的关闭</p>
+
+<pre><code class="language-go">    timer1 := time.NewTimer(time.Second * 2)
+    &lt;-timer1.C
+</code></pre>
+
+<p><code>&lt;-timer1.C</code> 直到这个定时器的通道 <code>C</code> 明确的发送了定时器失效的值(2s)之前，将一直阻塞。如果你只是要单纯的等待用time.Sleep,定时器是可以在它失效之前把它给取消的<code>stop2 := timer2.Stop()</code></p>
+
+<h3 id="打点器">打点器</h3>
+
+<p>当你想要在固定的时间间隔重复执行,定时的执行，直到我们将它停止</p>
+
+<pre><code class="language-go">    func main() {
+        //打点器和定时器的机制有点相似：一个通道用来发送数据。这里我们在这个通道上使用内置的 range 来迭代值每隔500ms 发送一次的值。
+        ticker := time.NewTicker(time.Millisecond * 500)
+        go func() {
+            for t := range ticker.C {
+                fmt.Println(&quot;Tick at&quot;, t)
+            }
+        }()
+    
+        //打点器可以和定时器一样被停止。一旦一个打点停止了，将不能再从它的通道中接收到值。我们将在运行后 1600ms停止这个打点器。
+        time.Sleep(time.Millisecond * 1600)
+        ticker.Stop()
+        fmt.Println(&quot;Ticker stopped&quot;)
+    }
+</code></pre>
+
+<h3 id="生成器">生成器</h3>
+
+<p>类似于提供了一个服务,不过只是适用于调用不是很频繁</p>
+
+<pre><code class="language-go">    func rand_generator_2() chan int {
+        out := make(chan int)
+        go func() {
+            for {
+                out &lt;- rand.Int()
+            }
+        }()
+        return out
+    }
+    
+    func main() {
+        // 生成随机数作为一个服务
+        rand_service_handler := rand_generator_2()
+        fmt.Printf(&quot;%dn&quot;, &lt;-rand_service_handler)
+    }
+</code></pre>
+
+<h3 id="多路复用">多路复用</h3>
+
+<p>Apache使用处理每个连接都需要一个进程，所以其并发性能不是很好。而Nighx使用多路复用的技术，让一个进程处理多个连接，所以并发性能比较好。</p>
+
+<p>多路复用技术可以用来整合多个通道。提升性能和操作的便捷。</p>
+
+<p>其实就是整合了多个上面的生成器</p>
+
+<pre><code class="language-go">    func rand_generator_3() chan int {
+        rand_generator_1 := rand_generator_2()
+        rand_generator_2 := rand_generator_2()
+        out := make(chan int)
+    
+        go func() {
+            for {
+                //读取生成器1中的数据，整合
+                out &lt;- &lt;-rand_generator_1
+            }
+        }()
+        go func() {
+            for {
+                //读取生成器2中的数据，整合
+                out &lt;- &lt;-rand_generator_2
+            }
+        }()
+        return out
+    }
+</code></pre>
+
+<h3 id="furture技术">Furture技术</h3>
+
+<p>可以在不准备好参数的情况下调用函数。函数调用和函数参数准备这两个过程可以完全解耦。可以在调用的时候不关心数据是否准备好，返回值是否计算好的问题。让程序中的组件在准备好数据的时候自动跑起来。 这个最后取得<code>&lt;-q.result</code>也是可以放到<code>execQuery</code>上面的把</p>
+
+<p>Furture技术可以和各个其他技术组合起来用。可以通过多路复用技术，监听多个结果Channel，当有结果后，自动返回。也可以和生成器组合使用，生成器不断生产数据，Furture技术逐个处理数据。Furture技术自身还可以首尾相连，形成一个并发的pipe filter。这个pipe filter可以用于读写数据流，操作数据流。</p>
+
+<pre><code class="language-go">    type query struct {
+        sql chan string
+        result chan string
+    }
+    
+    func execQuery(q query) {
+        go func() {
+            sql := &lt;-q.sql
+            q.result &lt;- &quot;get &quot; + sql
+        }()
+    
+    }
+    
+    func main() {
+        q := query{make(chan string, 1), make(chan string, 1)}
+        execQuery(q)
+    
+        //准备参数
+        q.sql &lt;- &quot;select * from table&quot;
+        fmt.Println(&lt;-q.result)
+    }
+</code></pre>
+
+<h3 id="chain-filter技术">Chain Filter技术</h3>
+
+<p>程序创建了10个Filter，每个分别过滤一个素数，所以可以输出前10个素数。</p>
+
+<pre><code class="language-go">    func Generate(ch chan&lt;- int) {
+        for i := 2; ; i++ {
+            ch &lt;- i 
+        }
+    }
+    
+    func Filter(in &lt;-chan int, out chan&lt;- int, prime int) {
+        for {
+            i := &lt;-in // Receive value from 'in'.
+            if i%prime != 0 {
+                out &lt;- i // Send 'i' to 'out'.
+            }
+        }
+    }
+    
+    // The prime sieve: Daisy-chain Filter processes.
+    func main() {
+        ch := make(chan int) // Create a new channel.
+        go Generate(ch)      // Launch Generate goroutine.
+        for i := 0; i &lt; 10; i++ {
+            prime := &lt;-ch
+            print(prime, &quot;n&quot;)
+            ch1 := make(chan int)
+            go Filter(ch, ch1, prime)
+            ch = ch1
+        }
+    }
+</code></pre>
+
+<h3 id="共享变量">共享变量</h3>
+
+<p>有些时候使用共享变量可以让代码更加简洁</p>
+
+<pre><code class="language-go">    type sharded_var struct {
+        reader chan int
+        writer chan int
+    }
+    
+    func sharded_var_whachdog(v sharded_var) {//共享变量维护协程
+        go func() {
+            var value int = 0
+            for { //监听读写通道，完成服务
+                select {
+                case value = &lt;-v.writer:
+                case v.reader &lt;- value:
+                }
+            }
+        }()
+    }
+    
+    func main() {
+        v := sharded_var{make(chan int), make(chan int)} //初始化，并开始维护协程
+        sharded_var_whachdog(v)
+    
+        fmt.Println(&lt;-v.reader)
+        v.writer &lt;- 1
+        fmt.Println(&lt;-v.reader)
+    }
+</code></pre>
+
+<h1 id="concurrency-patterns">Concurrency patterns</h1>
+
+<p>下面介绍了一些常用的并发模式.</p>
+
+<h2 id="runner">Runner</h2>
+
+<p>当你的程序会运行在后台,可以是cron job或者是Iron.io这样的worker-based云环境.这个程序就可以监控和中断你的程序,如果你的程序运行的太久了.</p>
+
+<p>定义了三个channel来通知任务状态.</p>
+
+<ul>
+<li>interrupt:接收系统的终止信号(比如ctrl-c),接收到之后系统就优雅的退出</li>
+<li>complete:指示任务完成状态或者返回错误</li>
+<li>timeout:当超时了之后,系统就优雅的退出</li>
+</ul>
+
+<p>tasks是一个函数类型的slice,你可以往里面存放签名为func funcName(id int){}的函数,作为你的任务.<code>task(id)</code>就是在执行任务了(当然只是用来模拟任务,可以定义一个任务接口来存放任务,此处是为了简便). 注意tasks里面的任务是串行执行的,这些任务的执行发生在一个单独的goroutine中.</p>
+
+<p>New方法里的interrupt channel buffer设置为1,也就是说当用户重复ctrl+c的时候,程序也只会收到一个信号,其他的信号会被丢弃.</p>
+
+<p>在run()方法中,在开始执行任务前(<code>task(id)</code>),会前检查执行流程有没有被中断(<code>if r.gotInterrupt() {}</code>),这里用了一个带default语句的select.一旦收到中断的事件,程序就不再接受任何其他事件了(<code>signal.Stop(r.interrupt)</code>).</p>
+
+<p>在Start()方法中,在go块中执行run()方法,任何当前的goroutine会阻塞在select这边,直到收到run()返回的complete channel或者超时返回.</p>
+
+<pre><code class="language-go">    // Runner runs a set of tasks within a given timeout and can be shut down on an operating system interrupt.
+    type Runner struct {
+        // interrupt channel reports a signal from the operating system.
+        interrupt chan os.Signal
+    
+        // complete channel reports that processing is done.
+        complete chan error
+    
+        // timeout reports that time has run out.
+        timeout &lt;-chan time.Time
+    
+        // tasks holds a set of functions that are executed
+        // synchronously in index order.
+        tasks []func(int)
+    }
+    
+    // ErrTimeout is returned when a value is received on the timeout channel.
+    var ErrTimeout = errors.New(&quot;received timeout&quot;)
+    
+    // ErrInterrupt is returned when an event from the OS is received.
+    var ErrInterrupt = errors.New(&quot;received interrupt&quot;)
+    
+    // New returns a new ready-to-use Runner.
+    func New(d time.Duration) *Runner {
+        return &amp;Runner{
+            interrupt: make(chan os.Signal, 1),
+            complete:  make(chan error),
+            timeout:   time.After(d),
+        }
+    }
+    
+    // Add attaches tasks to the Runner. A task is a function that takes an int ID. ...表示可以传入多个参数
+    func (r *Runner) Add(tasks ...func(int)) { 
+        r.tasks = append(r.tasks, tasks...)
+    }
+    
+    // Start runs all tasks and monitors channel events.
+    func (r *Runner) Start() error {
+        // We want to receive all interrupt based signals.
+        signal.Notify(r.interrupt, os.Interrupt)
+    
+        // Run the different tasks on a different goroutine.
+        go func() {
+            r.complete &lt;- r.run()
+        }()
+    
+        select {
+        // Signaled when processing is done.
+        case err := &lt;-r.complete:
+            return err
+    
+        // Signaled when we run out of time.
+        case &lt;-r.timeout:
+            return ErrTimeout
+        }
+    }
+    
+    // run executes each registered task.
+    func (r *Runner) run() error {
+        for id, task := range r.tasks {
+            // Check for an interrupt signal from the OS.
+            if r.gotInterrupt() {
+                return ErrInterrupt
+            }
+    
+            // Execute the registered task.
+            task(id)
+        }
+    
+        return nil
+    }
+    
+    // gotInterrupt verifies if the interrupt signal has been issued.
+    func (r *Runner) gotInterrupt() bool {
+        select {
+        // Signaled when an interrupt event is sent.
+        case &lt;-r.interrupt:
+            // Stop receiving any further signals.
+            signal.Stop(r.interrupt)
+            return true
+    
+        // Continue running as normal.
+        default:
+            return false
+        }
+    }
+</code></pre>
+
+<p>main方法</p>
+
+<pre><code class="language-go">    const timeout = 3 * time.Second
+    
+    // main is the entry point for the program.
+    func main() {
+        log.Println(&quot;Starting work.&quot;)
+    
+        // Create a new timer value for this run.
+        r := runner.New(timeout)
+    
+        // Add the tasks to be run.
+        r.Add(createTask(), createTask(), createTask())
+    
+        // Run the tasks and handle the result.
+        if err := r.Start(); err != nil {
+            switch err {
+            case runner.ErrTimeout:
+                log.Println(&quot;Terminating due to timeout.&quot;)
+                os.Exit(1)
+            case runner.ErrInterrupt:
+                log.Println(&quot;Terminating due to interrupt.&quot;)
+                os.Exit(2)
+            }
+        }
+    
+        log.Println(&quot;Process ended.&quot;)
+    }
+    
+    // createTask returns an example task that sleeps for the specified
+    // number of seconds based on the id.
+    func createTask() func(int) {
+        return func(id int) {
+            log.Printf(&quot;Processor - Task #%d.&quot;, id)
+            time.Sleep(time.Duration(id) * time.Second)
+        }
+    }
+</code></pre>
+
+<h2 id="pooling">Pooling</h2>
+
+<p>当你有一些特定的资源要共享,比如数据库连接或者内存buffers,这个模式就非常有用</p>
+
+<p>goroutine要用一个资源,就去pool中去拿,用完了就还回去.</p>
+
+<p>例子中的资源是只要实现了io.Closer接口即可.</p>
+
+<ul>
+<li>m用来保证多goroutine下对Poll的操作都是value-safe的.</li>
+<li>resources将会是一个buffered channel,会包含将要分享的资源.</li>
+<li>factory的作用是创建一个新的资源,当poll有需要的时候.</li>
+<li>closed用来指示pool有无被关闭</li>
+</ul>
+
+<p>New函数接受一个用来创建新资源的函数对象(<code>fn func() (io.Closer, error)</code>,返回一个资源)还有一个size参数.</p>
+
+<p>Acquire函数先从pool中取资源,要是取不到用factory新建一个</p>
+
+<pre><code class="language-go">    func (p *Pool) Acquire() (io.Closer, error) {
+        select {
+        // Check for a free resource.
+        case r, _ := &lt;-p.resources:
+            return r, nil
+    
+        // Provide a new resource since there are none available.
+        default:
+            return p.factory()
+        }
+    }
+</code></pre>
+
+<p>Release函数:如果pool已经关闭,就直接return.否则就向resource这个buffered channel里发送要释放的资源.default语句是如果resource已经满了,就关闭这个pool.</p>
+
+<p>Close函数:当程序运行完关闭pool的时候,应该调用Close函数,这个函数首先关闭resource这个buffered channel,然后再把buffered channel中的任务关闭(io.Closer).注意这个加锁.</p>
+
+<pre><code class="language-go">    // Pool manages a set of resources that can be shared safely by multiple goroutines.
+    // The resource being managed must implement  the io.Closer interface.
+    type Pool struct {
+        m         sync.Mutex
+        resources chan io.Closer
+        factory   func() (io.Closer, error)
+        closed    bool
+    }
+    
+    // ErrPoolClosed is returned when an Acquire returns on a closed pool.
+    var ErrPoolClosed = errors.New(&quot;Pool has been closed.&quot;)
+    
+    // New creates a pool that manages resources. A pool requires a
+    // function that can allocate a new resource and the size of the pool.
+    func New(fn func() (io.Closer, error), size uint) (*Pool, error) {
+        if size &lt;= 0 {
+            return nil, errors.New(&quot;Size value too small.&quot;)
+        }
+    
+        return &amp;Pool{
+            factory:   fn,
+            resources: make(chan io.Closer, size),
+        }, nil
+    }
+    
+    // Acquire retrieves a resource    from the pool.
+    func (p *Pool) Acquire() (io.Closer, error) {
+        select {
+        // Check for a free resource.
+        case r, ok := &lt;-p.resources:
+            log.Println(&quot;Acquire:&quot;, &quot;Shared Resource&quot;)
+            if !ok {
+                return nil, ErrPoolClosed
+            }
+            return r, nil
+    
+        // Provide a new resource since there are none available.
+        default:
+            log.Println(&quot;Acquire:&quot;, &quot;New Resource&quot;)
+            return p.factory()
+        }
+    }
+    
+    // Release places a new resource onto the pool.
+    func (p *Pool) Release(r io.Closer) {
+        // Secure this operation with the Close operation.
+        p.m.Lock()
+        defer p.m.Unlock()
+    
+        // If the pool is closed, discard the resource.
+        if p.closed {
+            r.Close()
+            return
+        }
+    
+        select {
+        // Attempt to place the new resource on the queue.
+        case p.resources &lt;- r:
+            log.Println(&quot;Release:&quot;, &quot;In Queue&quot;)
+    
+        // If the queue is already at cap we close the resource.
+        default:
+            log.Println(&quot;Release:&quot;, &quot;Closing&quot;)
+            r.Close()
+        }
+    }
+    
+    // Close will shutdown the pool and close all existing resources.
+    func (p *Pool) Close() {
+        // Secure this operation with the Release operation.
+        p.m.Lock()
+        defer p.m.Unlock()
+    
+        // If the pool is already close, don't do anything.
+        if p.closed {
+            return
+        }
+    
+        // Set the pool as closed.
+        p.closed = true
+    
+        // Close the channel before we drain the channel of its
+        // resources. If we don't do this, we will have a deadlock.
+        close(p.resources)
+    
+        // Close the resources
+        for r := range p.resources {
+            r.Close()
+        }
+    }
+</code></pre>
+
+<p>main</p>
+
+<pre><code class="language-go">    const (
+        maxGoroutines   = 25 // the number of routines to use.
+        pooledResources = 2  // number of resources in the pool
+    )
+    
+    // dbConnection simulates a resource to share.
+    type dbConnection struct {
+        ID int32
+    }
+    
+    // Close implements the io.Closer interface so dbConnection can be managed by the pool. Close performs any resource release management.
+    func (dbConn *dbConnection) Close() error {
+        log.Println(&quot;Close: Connection&quot;, dbConn.ID)
+        return nil
+    }
+    
+    // idCounter provides support for giving each connection a unique id.
+    var idCounter int32
+    
+    // createConnection is a factory method that will be called by the pool when a new connection is needed.
+    func createConnection() (io.Closer, error) {
+        id := atomic.AddInt32(&amp;idCounter, 1)
+        log.Println(&quot;Create: New Connection&quot;, id)
+    
+        return &amp;dbConnection{id}, nil
+    }
+    
+    // main is the entry point for all Go programs.
+    func main() {
+        var wg sync.WaitGroup
+        wg.Add(maxGoroutines)
+    
+        // Create the pool to manage our connections.
+        p, err := pool.New(createConnection, pooledResources)
+        if err != nil {
+            log.Println(err)
+        }
+    
+        // Perform queries using connections from the pool.
+        for query := 0; query &lt; maxGoroutines; query++ {
+            // Each goroutine needs its own copy of the query value else they will all be sharing the same query variable.
+            go func(q int) {
+                performQueries(q, p)
+                wg.Done()
+            }(query)
+        }
+    
+        // Wait for the goroutines to finish.
+        wg.Wait()
+    
+        // Close the pool.
+        log.Println(&quot;Shutdown Program.&quot;)
+        p.Close()
+    }
+    
+    // performQueries tests the resource pool of connections.
+    func performQueries(query int, p *pool.Pool) {
+        // Acquire a connection from the pool.
+        conn, err := p.Acquire()
+        if err != nil {
+            log.Println(err)
+            return
+        }
+    
+        // Release the connection back to the pool.
+        defer p.Release(conn)
+    
+        // Wait to simulate a query response.
+        time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
+        log.Printf(&quot;Query: QID[%d] CID[%d]\n&quot;, query, conn.(*dbConnection).ID)
+    }
+</code></pre>
+
+<h2 id="work">Work</h2>
+
+<p>New函数开启了固定个数(maxGoroutines)个goroutine,注意这边work是一个unbuffered channel.这个for range会阻塞直到channel中有值可以取.要是work这个channel被关闭了,这个for range就结束,然后调用wg.Done</p>
+
+<p>Run函数提交任务到pool中去<code>w.work &lt;- w</code>.注意这个work是一个unbuffered channel,所以得等一个goroutine把它取走,否则会阻塞住.这是我们需要保证的,因为我们想要调用者保证这个任务被提交之后立即开始运行</p>
+
+<pre><code class="language-go">    type Worker interface {
+        Task()
+    }
+    
+    // Pool provides a pool of goroutines that can execute any Worker
+    // tasks that are submitted.
+    type Pool struct {
+        work chan Worker
+        wg   sync.WaitGroup
+    }
+    
+    // New creates a new work pool.
+    func New(maxGoroutines int) *Pool {
+        p := Pool{
+            work: make(chan Worker),
+        }
+    
+        p.wg.Add(maxGoroutines)
+        for i := 0; i &lt; maxGoroutines; i++ {
+            go func() {
+                for w := range p.work {
+                    w.Task()
+                }
+                p.wg.Done()
+            }()
+        }
+    
+        return &amp;p
+    }
+    
+    // Run submits work to the pool.
+    func (p *Pool) Run(w Worker) {
+        p.work &lt;- w
+    }
+    
+    // Shutdown waits for all the goroutines to shutdown.
+    func (p *Pool) Shutdown() {
+        close(p.work)
+        p.wg.Wait()
+    }
+</code></pre>
+
+<p>main</p>
+
+<pre><code class="language-go">    // names provides a set of names to display.
+    var names = []string{
+        &quot;steve&quot;,
+        &quot;bob&quot;,
+        &quot;mary&quot;,
+        &quot;therese&quot;,
+        &quot;jason&quot;,
+    }
+    
+    // namePrinter provides special support for printing names.
+    type namePrinter struct {
+        name string
+    }
+    
+    // Task implements the Worker interface.
+    func (m *namePrinter) Task() {
+        log.Println(m.name)
+        time.Sleep(time.Second)
+    }
+    
+    // main is the entry point for all Go programs.
+    func main() {
+        // Create a work pool with 2 goroutines.
+        p := work.New(2)
+    
+        var wg sync.WaitGroup
+        wg.Add(100 * len(names))
+    
+        for i := 0; i &lt; 100; i++ {
+            // Iterate over the slice of names.
+            for _, name := range names {
+                // Create a namePrinter and provide the
+                // specific name.
+                np := namePrinter{
+                    name: name,
+                }
+    
+                go func() {
+                    // Submit the task to be worked on. When RunTask
+                    // returns we know it is being handled.
+                    p.Run(&amp;np)
+                    wg.Done()
+                }()
+            }
+        }
+    
+        wg.Wait()
+    
+        // Shutdown the work pool and wait for all existing work
+        // to be completed.
+        p.Shutdown()
+    }
+</code></pre>
+
+<h2 id="另一种worker的写法">另一种worker的写法</h2>
+
+<p>创建一个二级channel系统，一个来queue job，另外一个来控制使用多少个worker来并发操作JobQueue。把工作发送到工作队列中去<code>JobQueue &lt;- work</code></p>
+
+<pre><code class="language-go">    var (
+        MaxWorker = os.Getenv(&quot;MAX_WORKERS&quot;)
+        MaxQueue  = os.Getenv(&quot;MAX_QUEUE&quot;)
+    )
+    
+    // Job represents the job to be run
+    type Job struct {
+        Payload Payload
+    }
+    
+    // A buffered channel that we can send work requests on.
+    var JobQueue chan Job
+    
+    // Worker represents the worker that executes the job
+    type Worker struct {
+        WorkerPool  chan chan Job
+        JobChannel  chan Job
+        quit        chan bool
+    }
+    
+    func NewWorker(workerPool chan chan Job) Worker {
+        return Worker{
+            WorkerPool: workerPool,
+            JobChannel: make(chan Job),
+            quit:       make(chan bool)}
+    }
+    
+    // Start method starts the run loop for the worker, listening for a quit channel in case we need to stop it
+    func (w Worker) Start() {
+        go func() {
+            for {
+                // register the current worker into the worker queue.
+                w.WorkerPool &lt;- w.JobChannel
+    
+                select {
+                case job := &lt;-w.JobChannel:
+                    // we have received a work request.
+                    if err := job.Payload.UploadToS3(); err != nil {
+                        log.Errorf(&quot;Error uploading to S3: %s&quot;, err.Error())
+                    }
+    
+                case &lt;-w.quit:
+                    // we have received a signal to stop
+                    return
+                }
+            }
+        }()
+    }
+    
+    // Stop signals the worker to stop listening for work requests.
+    func (w Worker) Stop() {
+        go func() {
+            w.quit &lt;- true
+        }()
+    }
+</code></pre>
+
+<p>我们创建一个Dispatcher，然后调用Run()函数创建一个worker池子，然后开始监听JobQueue中的job。<code>dispatcher.Run()</code>(这个类似资源池)</p>
+
+<pre><code class="language-go">    type Dispatcher struct {
+        // A pool of workers channels that are registered with the dispatcher
+        WorkerPool chan chan Job
+    }
+    
+    func NewDispatcher(maxWorkers int) *Dispatcher {
+        pool := make(chan chan Job, maxWorkers)
+        return &amp;Dispatcher{WorkerPool: pool}
+    }
+    
+    func (d *Dispatcher) Run() {
+        // starting n number of workers
+        for i := 0; i &lt; d.maxWorkers; i++ {
+            worker := NewWorker(d.pool)
+            worker.Start()
+        }
+    
+        go d.dispatch()
+    }
+    
+    func (d *Dispatcher) dispatch() {
+        for {
+            select {
+            case job := &lt;-JobQueue:
+                // a job request has been received
+                go func(job Job) {
+                    // try to obtain a worker job channel that is available.
+                    // this will block until a worker is idle
+                    jobChannel := &lt;-d.WorkerPool
+    
+                    // dispatch the job to the worker job channel
+                    jobChannel &lt;- job
+                }(job)
+            }
+        }
+    }
+</code></pre>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="http://example.org/tags/go/">go</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      
+      <a href="http://example.org/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="http://example.org/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="http://example.org/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
+      
+      <a href="http://example.org/2017-04-01-lock/" class="list-group-item">Lock</a>
+      
+      <a href="http://example.org/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
+      
+      <a href="http://example.org/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
+      
+      <a href="http://example.org/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
+      
+      <a href="http://example.org/2017-04-03-scale/" class="list-group-item">Scale</a>
+      
+      <a href="http://example.org/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="http://example.org/tags/c" class="list-group-item">c</a>
+      
+      <a href="http://example.org/tags/db" class="list-group-item">db</a>
+      
+      <a href="http://example.org/tags/go" class="list-group-item">go</a>
+      
+      <a href="http://example.org/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="http://example.org/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="http://example.org/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="http://example.org/tags/novel" class="list-group-item">novel</a>
+      
+      <a href="http://example.org/tags/php" class="list-group-item">php</a>
+      
+      <a href="http://example.org/tags/vim" class="list-group-item">vim</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; My New Hugo Site</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://example.org/tags/basic/index.xml">
+
+<link rel="canonical" href="http://example.org/tags/basic/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Basic - My New Hugo Site</title>
+    
+    <link href="http://example.org/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://example.org/">My New Hugo Site</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    
+    <header class="page-header">
+      <h1>Basic</h1>
+    </header>
+    
+
+    <ul class="p-articles">
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2017-04-01-lock/">Lock</a></h2>
+  </header>
+
+  
+  <div class="summary">#lock
+悲观锁(Pessimistic Lock): 顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。 传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。
+乐观锁(Optimistic Lock): 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。 乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。
+两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。 但如果经常产生冲突，上层应用会不断的进行retry，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适。</div>
+
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2017-04-03-scale/">Scale</a></h2>
+  </header>
+
+  
+  <div class="summary">Scale 1英文字符(word,字符) = 2byte;[ASCII, Unicode, UTF-8]
+1中文字符 = 2byte(B) [ASCII,Unicode];
+1中文字符 = 3byte(B) [UTF-8];
+1B(byte，字节) = 8 bit(见下文);
+1KB(Kibibyte，千字节) = 1024B = 2^10 B;
+1MB(Mebibyte，兆字节，百万字节，简称“兆”) = 1024KB = 2^20 B;
+1GB(Gigabyte，吉字节，十亿字节，又称“千兆”) = 1024MB = 2^30 B;
+1TB(Terabyte，万亿字节，太字节) = 1024GB = 2^40 B;
+1PB(Petabyte，千万亿字节，拍字节) = 1024TB = 2^50 B;
+1EB(Exabyte，百亿亿字节，艾字节) = 1024PB = 2^60 B;
+1ZB(Zettabyte，十万亿亿字节，泽字节) = 1024EB = 2^70 B;
+1YB(Yottabyte，一亿亿亿字节，尧字节) = 1024ZB = 2^80 B;
+1BB(Brontobyte，一千亿亿亿字节) = 1024YB = 2^90 B;</div>
+
+  
+  <footer>
+    <a href="http://example.org/2017-04-03-scale/" title="Scale">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+    </ul>
+
+    
+
+
+  </div>
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      
+      <a href="http://example.org/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="http://example.org/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="http://example.org/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
+      
+      <a href="http://example.org/2017-04-01-lock/" class="list-group-item">Lock</a>
+      
+      <a href="http://example.org/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
+      
+      <a href="http://example.org/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
+      
+      <a href="http://example.org/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
+      
+      <a href="http://example.org/2017-04-03-scale/" class="list-group-item">Scale</a>
+      
+      <a href="http://example.org/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="http://example.org/tags/c" class="list-group-item">c</a>
+      
+      <a href="http://example.org/tags/db" class="list-group-item">db</a>
+      
+      <a href="http://example.org/tags/go" class="list-group-item">go</a>
+      
+      <a href="http://example.org/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="http://example.org/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="http://example.org/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="http://example.org/tags/novel" class="list-group-item">novel</a>
+      
+      <a href="http://example.org/tags/php" class="list-group-item">php</a>
+      
+      <a href="http://example.org/tags/vim" class="list-group-item">vim</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; My New Hugo Site</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

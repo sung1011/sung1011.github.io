@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://example.org/index.xml">
+
+<link rel="canonical" href="http://example.org/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>My New Hugo Site</title>
+    
+    <link href="http://example.org/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://example.org/">My New Hugo Site</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    
+
+    <ul class="p-articles">
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2017-04-08-vim-sort/">Vim-sort</a></h2>
+  </header>
+
+  
+  <div class="summary">vim sort 1：如果我们想以第4列数据进行排序，可以在vim中如此做： 1，12!sort -r -n -k4.1,5  -r 是降序排序
+-n 是按数字大小排序
+-k,表示根据那个字段排序，4.1,表示第4列第一个字符开始 ，5表示到第5个字段为结束
+-t 后面跟分隔符，缺省是空格
+2：在VIM里面, 如果你要把从当前行以下20行按字母顺序排序 只要输入:.,+20!sort  3：用vi 來看log檔常要排序一下資料 可以用外部的sort 程式協助排序
+令用法如下:
+:1,$!sort -k 3  表示從第1列開始, 以第3 欄資料進行排序
+:4,$!sort -k 3  表示從第4列開始, 以第3 欄資料進行排序 給有標題的文件用
+:1,$!sort -k 4 -t&quot;.&quot;  表示從第1列開始, 以第8 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo;
+結果會如下 :
+192.168.1.20
+192.168.1.218
+192.168.1.22
+218 竟然排在 22 的前面? 是因為以&rdquo;文字順序&rdquo;排序的關係
+:1,$!sort -k 4 -t&quot;.&quot; -n  表示從第1列開始, 以第4 欄資料進行排序, 分欄字元是 &ldquo;.</div>
+
+  
+  <footer>
+    <a href="http://example.org/2017-04-08-vim-sort/" title="Vim-sort">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2017-04-10-encrypted/">encrypted</a></h2>
+  </header>
+
+  
+  <div class="summary">一、网络数据传输安全概述 我们说的数据加密与解密通常是为了保证数据在网络传输过程中的安全性。在网络发展初期，网络的数据安全性是没有被足够的重视的。事实上，当时为了实现数据可以通过网络进行传输已经耗费了科学家大部分男细胞，因此在TCP/IP协议设计的初期，他们也实在没有太多精力去过多考虑数据在网络传输过程中可能存在的安全性问题。随着TCP/IP协议及相关技术的日渐成熟，网络数据传输技术越来越稳定，人们才慢慢开始重视这个问题，美国国家标准与技术研究院（National Institue of Standard and Technology，简称NIST）也开始制定相关的安全标准。
+网络安全涉及到很多个方面，我们这里仅仅讨论下网络数据传输过程中可能受到的威胁，其中常见的有：
+ 数据窃听 数据篡改 身份伪装  针对以上威胁，我们介绍下网络数据传输的安全性涉及的几个方面：
+1. 机密性 机密性是指对要传输的数据进行加密和解密，防止第三方看到通信数据的明文内容。其对应的通信过程如下：
+数据发送方：
+plaintext(明文) ==&gt; 转换算法 ==&gt; ciphertext(密文)  数据接收方：
+ciphertext(密文) ==&gt; 转换算法 ==&gt; plaintext(明文)  2. 完整性 数据完整性是指不允许数据在传输过程中被修改（第三方恶意篡改或电平信号造成的部分数据丢失），但是它不要求数据的机密性，也就是说允许其他人看到明文数据。我们通常通过以不可逆的算法对数据提取特征码（也叫数据指纹），通过验证特征码的一致性来判断数据是否被修改过，通信过程如下：
+数据发送发：
+plaintext(明文) ==&gt; 转换算法 ==&gt; plaintext(明文) + footprint(数据指纹A)  数据接收方：
+plaintext(明文) + footprint(数据指纹A) ==&gt; 转换算法 ==&gt; footprint(数据指纹B) ==&gt; 对比数据指纹A与B是否一致  3. 身份验证 身份验证通常是指数据接收方需要确认发送数据给自己的数据是自己想要通信的那一方，防止他人冒充通信对方的身份进行通信。身份验证的大体原理是：数据发送方与数据接收方约定一种特殊的数据加解密方式，数据发送方将一个通过约定的加密方式进行加密后的数据发送给数据接收方，数据接收方如能按照约定的加密方式正确解密该数据就表示对数据发送方的身份验证成功。其对应的通信过程如下：
+数据发送方：
+plaintext(明文) ==&gt; 转换算法 ==&gt; ciphertext(密文)  数据接收方：
+ciphertext(密文) ==&gt; 转换算法 ==&gt; plaintext(明文)  二、数据加密算法分类 上面提到的网络数据传输所涉及到的几个方面都需要特定的转换算法来实现，常用的转换算法（数据加密/解密算法）大体上可以分为以下几类：</div>
+
+  
+  <footer>
+    <a href="http://example.org/2017-04-10-encrypted/" title="encrypted">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2018-04-11-golang-grammer/">golang-grammer</a></h2>
+  </header>
+
+  
+  <div class="summary">出处&mdash;Go编程语言
+ 欢迎来到 Go 编程语言指南。本指南涵盖了该语言的大部分重要特性 Go 语言的交互式简介，它分为三节。第一节覆盖了基本语法及数据结构，第二节讨论了方法与接口， 第三节则简单介绍了 Go 的并发原语。每节末尾都有几个练习，你可以对自己的所学进行实践。 你可以 在线学习 或 安装到本地。  Go基础语法，方便查阅
+包、变量和函数  学习 Go 程序的基本组件  1.包  每个 Go 程序都是由包组成的。 程序运行的入口是包 main。 这个程序使用并导入了包 &ldquo;fmt&rdquo; 和 &ldquo;math/rand&rdquo; 。 按照惯例，包名与导入路径的最后一个目录一致。例如，&rdquo;math/rand&rdquo; 包由 package rand 语句开始。 注意：这个程序的运行环境是确定性的，因此 rand.Intn每次都会返回相同的数字。 （为了得到不同的随机数，需要提供一个随机数种子，参阅 rand.Seed。）
+package main
+import ( &ldquo;fmt&rdquo; &ldquo;math/rand&rdquo; )
+func main() { fmt.Println(&ldquo;My favorite number is&rdquo;, rand.Intn(10)) } `
+ 结果 My favorite number is 1 
+2.导入 这个代码用圆括号组合了导入，这是“打包”导入语句。</div>
+
+  
+  <footer>
+    <a href="http://example.org/2018-04-11-golang-grammer/" title="golang-grammer">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2018-04-12-golang-nobuff-chan/">golang-grammer</a></h2>
+  </header>
+
+  
+  <div class="summary">chan nobuff 一个基于无缓存Channels的发送操作将导致发送者goroutine阻塞，直到另一个goroutine在相同的 Channels上执行接收操作，当发送的值通过Channels成功传输之后，两个goroutine可以继续执行 后面的语句。反之，如果接收操作先发生，那么接收者goroutine也将阻塞，直到有另一个 goroutine在相同的Channels上执行发送操作。
+buff 带缓存的Channel内部持有一个元素队列。</div>
+
+  
+</article>
+</li>
+      
+    </ul>
+
+    
+<nav>
+  <ul class="pager">
+
+    
+    <li><a href="/">Previous</a></li>
+    
+
+    
+    <li class="disabled"><a href="#">Next</a></li>
+    
+
+  </ul>
+</nav>
+
+
+
+  </div>
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      
+      <a href="http://example.org/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="http://example.org/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="http://example.org/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
+      
+      <a href="http://example.org/2017-04-01-lock/" class="list-group-item">Lock</a>
+      
+      <a href="http://example.org/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
+      
+      <a href="http://example.org/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
+      
+      <a href="http://example.org/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
+      
+      <a href="http://example.org/2017-04-03-scale/" class="list-group-item">Scale</a>
+      
+      <a href="http://example.org/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="http://example.org/tags/c" class="list-group-item">c</a>
+      
+      <a href="http://example.org/tags/db" class="list-group-item">db</a>
+      
+      <a href="http://example.org/tags/go" class="list-group-item">go</a>
+      
+      <a href="http://example.org/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="http://example.org/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="http://example.org/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="http://example.org/tags/novel" class="list-group-item">novel</a>
+      
+      <a href="http://example.org/tags/php" class="list-group-item">php</a>
+      
+      <a href="http://example.org/tags/vim" class="list-group-item">vim</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; My New Hugo Site</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

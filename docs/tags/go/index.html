@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://example.org/tags/go/index.xml">
+
+<link rel="canonical" href="http://example.org/tags/go/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Go - My New Hugo Site</title>
+    
+    <link href="http://example.org/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://example.org/">My New Hugo Site</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    
+    <header class="page-header">
+      <h1>Go</h1>
+    </header>
+    
+
+    <ul class="p-articles">
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="http://example.org/2017-04-10-go-cc/">Concurrent-and-parallel</a></h2>
+  </header>
+
+  
+  <div class="summary">go 并发与并行  并发（concurrency） 并发的关注点在于任务切分。举例来说，你是一个创业公司的CEO，开始只有你一个人，你一人分饰多角，一会做产品规划，一会写代码，一会见客户，虽然你不能见客户的同时写代码，但由于你切分了任务，分配了时间片，表现出来好像是多个任务一起在执行。
+ 并行（parallelism） 并行的关注点在于同时执行。还是上面的例子，你发现你自己太忙了，时间分配不过来，于是请了工程师，产品经理，市场总监，各司一职，这时候多个任务可以同时执行了。
+  GreenThread
+ 用户空间 首先是在用户空间，避免内核态和用户态的切换导致的成本。
+ 由语言或者框架层调度
+ 更小的栈空间允许创建大量实例（百万级别）
+  几个概念
+ Continuation 这个概念不熟悉 FP 编程的人可能不太熟悉，不过这里可以简单的顾名思义，可以理解为让我们的程序可以暂停，然后下次调用继续（contine）从上次暂停的地方开始的一种机制。相当于程序调用多了一种入口。
+ Coroutine 是 Continuation 的一种实现，一般表现为语言层面的组件或者类库。主要提供 yield，resume 机制。
+ Fiber 和 Coroutine 其实是一体两面的，主要是从系统层面描述，可以理解成 Coroutine 运行之后的东西就是 Fiber。
+  Goroutine Goroutine 其实就是前面 GreenThread 系列解决方案的一种演进和实现。
+ 首先，它内置了 Coroutine 机制。因为要用户态的调度，必须有可以让代码片段可以暂停/继续的机制。
+ 其次，它内置了一个调度器，实现了 Coroutine 的多线程并行调度，同时通过对网络等库的封装，对用户屏蔽了调度细节。
+ 最后，提供了 Channel 机制，用于 Goroutine 之间通信，实现 CSP 并发模型（Communicating Sequential Processes）。因为 Go 的 Channel 是通过语法关键词提供的，对用户屏蔽了许多细节。其实 Go 的 Channel 和 Java 中的 SynchronousQueue 是一样的机制，如果有 buffer 其实就是 ArrayBlockQueue。</div>
+
+  
+  <footer>
+    <a href="http://example.org/2017-04-10-go-cc/" title="Concurrent-and-parallel">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+    </ul>
+
+    
+
+
+  </div>
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      
+      <a href="http://example.org/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="http://example.org/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="http://example.org/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
+      
+      <a href="http://example.org/2017-04-01-lock/" class="list-group-item">Lock</a>
+      
+      <a href="http://example.org/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
+      
+      <a href="http://example.org/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
+      
+      <a href="http://example.org/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
+      
+      <a href="http://example.org/2017-04-03-scale/" class="list-group-item">Scale</a>
+      
+      <a href="http://example.org/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="http://example.org/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="http://example.org/tags/c" class="list-group-item">c</a>
+      
+      <a href="http://example.org/tags/db" class="list-group-item">db</a>
+      
+      <a href="http://example.org/tags/go" class="list-group-item">go</a>
+      
+      <a href="http://example.org/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="http://example.org/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="http://example.org/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="http://example.org/tags/novel" class="list-group-item">novel</a>
+      
+      <a href="http://example.org/tags/php" class="list-group-item">php</a>
+      
+      <a href="http://example.org/tags/vim" class="list-group-item">vim</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; My New Hugo Site</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
