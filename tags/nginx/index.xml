@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on tickles</title>
+    <link>https://sung1011.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on tickles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://sung1011.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nginx-param-and-sign</title>
+      <link>https://sung1011.github.io/2017-04-05-nginx-param-and-sign/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sung1011.github.io/2017-04-05-nginx-param-and-sign/</guid>
+      <description>官方文档：http://nginx.org/en/docs/control.html
+ nginx参数和信号 nginx参数    COMMAND ILLUSTRATE     -c 为 Nginx 指定一个配置文件，来代替缺省的。   -t 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。   -v 显示 nginx 的版本。   -V 显示 nginx 的版本，编译器版本和配置参数。    nginx信号 Master进程能够接收并处理如下的信号：    COMMAND ILLUSTRATE     ERM, INT （快速退出，当前的请求不执行完成就退出）   QUIT （优雅退出，执行完当前的请求后退出）   HUP （重新加载配置文件，用新的配置文件启动新worker进程，并优雅的关闭旧的worker进程）   USR1 （重新打开日志文件）   USR2 （平滑的升级nginx二进制文件）   WINCH （优雅的关闭worker进程）    Worker进程也可以接收并处理一些信号：    COMMAND ILLUSTRATE     TERM, INT （快速退出）   QUIT （优雅退出）   USR1 （重新打开日志文件）    nginx 启动、停止、重启命令 nginx启动 sudo /usr/local/nginx/nginx (nginx二进制文件绝对路径，可以根据自己安装路径实际决定)  nginx从容停止命令，等所有请求结束后关闭服务 ps -ef |grep nginx kill -QUIT nginx主进程号  nginx 快速停止命令，立刻关闭nginx进程 ps -ef |grep nginx kill -TERM nginx主进程号  如果以上命令不管用，可以强制停止</description>
+    </item>
+    
+  </channel>
+</rss>
