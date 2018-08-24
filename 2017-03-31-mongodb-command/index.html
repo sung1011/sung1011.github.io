@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+
+
+<link rel="canonical" href="https://sung1011.github.io/2017-03-31-mongodb-command/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Mongodb-command - tickles</title>
+    
+<meta name="description" content="mongodb basic command">
+
+<meta property="og:title" content="Mongodb-command - tickles">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sung1011.github.io/2017-03-31-mongodb-command/">
+<meta property="og:image" content="https://sung1011.github.io/images/default.png">
+<meta property="og:site_name" content="tickles">
+<meta property="og:description" content="mongodb basic command">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tickles">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-03-31-mongodb-command/">
+<meta name="twitter:title" content="Mongodb-command - tickles">
+<meta name="twitter:description" content="mongodb basic command">
+<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://sung1011.github.io/"
+    },
+    "headline": "Mongodb-command - tickles",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://sung1011.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "0001-01-01T00:00:00JST",
+    "dateModified": "0001-01-01T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "tickles"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "tickles",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sung1011.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "mongodb basic command"
+  }
+</script>
+
+
+    <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://sung1011.github.io/">tickles</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Mongodb-command</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+
+    <h1 class="title">Mongodb-command</h1>
+  </header>
+
+  
+
+  <div class="article-body">
+
+<h1 id="mongo-shell">Mongo shell</h1>
+
+<p><a href="#1">一. 数据库常用命令</a><br />
+<a href="#2">二. Collection聚集集合</a><br />
+<a href="#3">三. 用户相关</a><br />
+<a href="#4">四. 聚集集合查询</a><br />
+<a href="#5">五. 索引</a><br />
+<a href="#6">六. 修改. 添加. 删除集合数据</a><br />
+<a href="#7">七. 语句块操作</a><br />
+<a href="#8">八. 其他</a></p>
+
+<hr />
+
+<p>一. <span id = "1">数据库常用命令</span><br />
+1. Help查看命令提示</p>
+
+<pre><code>help
+db.help();
+db.yourColl.help();
+db.youColl.find().help();
+rs.help();
+</code></pre>
+
+<ol>
+<li><p>切换/创建数据库</p>
+
+<pre><code>use yourDB;
+//当创建一个集合(table)的时候会自动创建当前数据库
+</code></pre></li>
+
+<li><p>查询所有数据库</p>
+
+<pre><code>show dbs;
+</code></pre></li>
+
+<li><p>删除当前使用数据库</p>
+
+<pre><code>db.dropDatabase();
+</code></pre></li>
+
+<li><p>从指定主机上克隆数据库</p>
+
+<pre><code>db.cloneDatabase('127.0.0.1');
+//将指定机器上的数据库的数据克隆到当前数据库
+</code></pre></li>
+
+<li><p>从指定的机器上复制指定数据库数据到某个数据库</p>
+
+<pre><code>db.copyDatabase(&quot;mydb&quot;, &quot;temp&quot;, &quot;127.0.0.1&quot;);
+//将本机的mydb的数据复制到temp数据库中
+</code></pre></li>
+
+<li><p>修复当前数据库</p>
+
+<pre><code>db.repairDatabase();
+</code></pre></li>
+
+<li><p>查看当前使用的数据库</p>
+
+<pre><code>db.getName();
+db;
+//db和getName方法是一样的效果，都可以查询当前使用的数据库
+</code></pre></li>
+
+<li><p>显示当前db状态</p>
+
+<pre><code>db.stats();
+</code></pre></li>
+
+<li><p>当前db版本</p>
+
+<pre><code>db.version();
+</code></pre></li>
+
+<li><p>查看当前db的链接机器地址</p>
+
+<pre><code>db.getMongo();
+</code></pre></li>
+</ol>
+
+<p><span id = '2'>二. Collection聚集集合</span>
+1. 创建一个聚集集合（table）</p>
+
+<pre><code>db.createCollection(“collName”, {size: 20, capped: 5, max: 100});
+//创建成功会显示{“ok”:1}
+db.collName.isCapped();
+//判断集合是否为定容量
+</code></pre>
+
+<ol>
+<li><p>得到指定名称的聚集集合（table）</p>
+
+<pre><code>db.getCollection(&quot;account&quot;);
+</code></pre></li>
+
+<li><p>得到当前db的所有聚集集合</p>
+
+<pre><code>db.getCollectionNames();
+</code></pre></li>
+
+<li><p>显示当前db所有聚集索引的状态</p>
+
+<pre><code>db.printCollectionStats();
+</code></pre></li>
+</ol>
+
+<p><span id = '3'>三. 用户相关</span>
+1. 添加一个用户</p>
+
+<pre><code>db.addUser(&quot;name&quot;);
+db.addUser(&quot;userName&quot;, &quot;pwd123&quot;, true);
+//添加用户. 设置密码. 是否只读
+</code></pre>
+
+<ol>
+<li><p>数据库认证. 安全模式</p>
+
+<pre><code>db.auth(&quot;userName&quot;, &quot;123123&quot;);
+</code></pre></li>
+
+<li><p>显示当前所有用户</p>
+
+<pre><code>show users;
+</code></pre></li>
+
+<li><p>删除用户</p>
+
+<pre><code>db.removeUser(&quot;userName&quot;);
+</code></pre></li>
+</ol>
+
+<p><span id = '4'>四. 聚集集合查询</span>
+1. 查询所有记录</p>
+
+<pre><code>db.userInfo.find();
+</code></pre>
+
+<p>默认每页显示20条记录，当显示不下的情况下，可以用it迭代命令查询下一页数据。注意：键入it命令不能带“；”
+但是你可以设置每页显示数据的大小，用DBQuery.shellBatchSize= 50;这样每页就显示50条记录了。</p>
+
+<ol>
+<li><p>查询去掉后的当前聚集集合中的某列的重复数据</p>
+
+<pre><code>db.userInfo.distinct(&quot;name&quot;);
+</code></pre></li>
+
+<li><p>查询age = 22的记录</p>
+
+<pre><code>db.userInfo.find({&quot;age&quot;: 22});
+</code></pre></li>
+
+<li><p>查询age &gt; 22的记录</p>
+
+<pre><code>db.userInfo.find({age: {$gt: 22}});
+</code></pre></li>
+
+<li><p>查询age &lt; 22的记录</p>
+
+<pre><code>db.userInfo.find({age: {$lt: 22}});
+</code></pre></li>
+
+<li><p>查询age &gt;= 25的记录</p>
+
+<pre><code>db.userInfo.find({age: {$gte: 25}});
+</code></pre></li>
+
+<li><p>查询age &lt;= 25的记录</p>
+
+<pre><code>db.userInfo.find({age: {$lte: 25}});
+</code></pre></li>
+
+<li><p>查询age &gt;= 23 并且 age &lt;= 26</p>
+
+<pre><code>db.userInfo.find({age: {$gte: 23, $lte: 26}});
+</code></pre></li>
+
+<li><p>查询name中包含 mongo的数据</p>
+
+<pre><code>db.userInfo.find({name: /mongo/});
+</code></pre></li>
+
+<li><p>查询name中以mongo开头的</p>
+
+<pre><code>db.userInfo.find({name: /^mongo/});
+</code></pre></li>
+
+<li><p>查询指定列name. age数据</p>
+
+<pre><code>db.userInfo.find({}, {name: 1, age: 1});
+</code></pre></li>
+</ol>
+
+<p>当然name也可以用true或false,当用ture的情况下河name:1效果一样，如果用false就是排除name，显示name以外的列信息。
+12. 查询指定列name. age数据, age &gt; 25</p>
+
+<pre><code>db.userInfo.find({age: {$gt: 25}}, {name: 1, age: 1});
+</code></pre>
+
+<ol>
+<li><p>按照年龄排序</p>
+
+<pre><code>升序：db.userInfo.find().sort({age: 1});
+降序：db.userInfo.find().sort({age: -1});
+</code></pre></li>
+
+<li><p>查询name = zhangsan, age = 22的数据</p>
+
+<pre><code>db.userInfo.find({name: 'zhangsan', age: 22});
+</code></pre></li>
+
+<li><p>查询前5条数据</p>
+
+<pre><code>db.userInfo.find().limit(5);
+</code></pre></li>
+
+<li><p>查询10条以后的数据</p>
+
+<pre><code>db.userInfo.find().skip(10);
+);
+</code></pre></li>
+
+<li><p>查询在5-10之间的数据</p>
+
+<pre><code>db.userInfo.find().limit(10).skip(5);
+</code></pre></li>
+</ol>
+
+<p>可用于分页，limit是pageSize，skip是第几页*pageSize
+18. or与 查询</p>
+
+<pre><code>db.userInfo.find({$or: [{age: 22}, {age: 25}]});
+</code></pre>
+
+<ol>
+<li><p>查询第一条数据</p>
+
+<pre><code>db.userInfo.findOne();
+db.userInfo.find().limit(1);
+</code></pre></li>
+
+<li><p>查询某个结果集的记录条数</p>
+
+<pre><code>db.userInfo.find({age: {$gte: 25}}).count();
+</code></pre></li>
+
+<li><p>按照某列进行排序</p>
+
+<pre><code>db.userInfo.find({sex: {$exists: true}}).count();
+</code></pre></li>
+</ol>
+
+<p><span id = '5'>五. 索引</span>
+1. 创建索引</p>
+
+<pre><code>db.userInfo.ensureIndex({name: 1});
+db.userInfo.ensureIndex({name: 1, ts: -1});
+</code></pre>
+
+<ol>
+<li><p>查询当前聚集集合所有索引</p>
+
+<pre><code>db.userInfo.getIndexes();
+</code></pre></li>
+
+<li><p>查看总索引记录大小</p>
+
+<pre><code>db.userInfo.totalIndexSize();
+</code></pre></li>
+
+<li><p>读取当前集合的所有index信息</p>
+
+<pre><code>db.users.reIndex();
+</code></pre></li>
+
+<li><p>删除指定索引</p>
+
+<pre><code>db.users.dropIndex(&quot;name_1&quot;);
+</code></pre></li>
+
+<li><p>删除所有索引索引</p>
+
+<pre><code>db.users.dropIndexes();
+</code></pre></li>
+</ol>
+
+<p><span id = '6'>六. 修改. 添加. 删除集合数据</span>
+1. 添加</p>
+
+<pre><code>db.users.save({name: ‘zhangsan', age: 25, sex: true});
+</code></pre>
+
+<p>添加的数据的数据列，没有固定，根据添加的数据为准
+2. 修改</p>
+
+<pre><code>db.users.update({age: 25}, {$set: {name: 'changeName'}}, false, true);
+db.users.update({name: 'Lisi'}, {$inc: {age: 50}, $set: {name: 'hoho'}}, false, true);
+</code></pre>
+
+<ol>
+<li><p>删除</p>
+
+<pre><code>db.users.remove({age: 132});
+</code></pre></li>
+
+<li><p>查询修改删除</p>
+
+<pre><code>db.users.findAndModify({
+query: {age: {$gte: 25}},
+sort: {age: -1},
+update: {$set: {name: 'a2'}, $inc: {age: 2}},
+remove: true
+});
+db.runCommand({ findandmodify : &quot;users&quot;,
+query: {age: {$gte: 25}},
+sort: {age: -1},
+update: {$set: {name: 'a2'}, $inc: {age: 2}},
+remove: true
+});
+</code></pre></li>
+</ol>
+
+<p>update 或 remove 其中一个是必须的参数; 其他参数可选。
+参数    详解     默认值
+query    查询过滤条件    {}
+sort    如果多个文档符合查询过滤条件，将以该参数指定的排列方式选择出排在首位的对象，该对象将被操作    {}
+remove    若为true，被选中对象将在返回前被删除    N/A
+update    一个 修改器对象
+N/A
+new    若为true，将返回修改后的对象而不是原始对象。在删除操作中，该参数被忽略。    false
+fields    参见Retrieving a Subset of Fields (1.5.0+)
+All fields
+upsert    创建新对象若查询结果为空。 示例 (1.5.4+)
+false</p>
+
+<p><span id = '7'>七. 语句块操作</span>
+1. 简单Hello World</p>
+
+<pre><code>print(&quot;Hello World!&quot;);
+</code></pre>
+
+<p>这种写法调用了print函数，和直接写入&rdquo;Hello World!&ldquo;的效果是一样的；
+2. 将一个对象转换成json</p>
+
+<pre><code>tojson(new Object());
+tojson(new Object('a'));
+</code></pre>
+
+<ol>
+<li>循环添加数据
+<code>
+&gt; for (var i = 0; i &lt; 30; i++) {
+... db.users.save({name: &quot;u_&quot; + i, age: 22 + i, sex: i % 2});
+... };
+</code></li>
+</ol>
+
+<p>这样就循环添加了30条数据，同样也可以省略括号的写法</p>
+
+<pre><code>&gt; for (var i = 0; i &lt; 30; i++) db.users.save({name: &quot;u_&quot; + i, age: 22 + i, sex: i % 2});
+</code></pre>
+
+<p>也是可以的，当你用db.users.find()查询的时候，显示多条数据而无法一页显示的情况下，可以用it查看下一页的信息；
+4. find 游标查询</p>
+
+<pre><code>&gt;var cursor = db.users.find();
+&gt; while (cursor.hasNext()) {
+    printjson(cursor.next());
+}
+</code></pre>
+
+<p>这样就查询所有的users信息，同样可以这样写</p>
+
+<pre><code>var cursor = db.users.find();
+while (cursor.hasNext()) { printjson(cursor.next); }
+</code></pre>
+
+<p>同样可以省略{}号
+5. forEach迭代循环</p>
+
+<pre><code>db.users.find().forEach(printjson);
+</code></pre>
+
+<p>forEach中必须传递一个函数来处理每条迭代的数据信息
+6. 将find游标当数组处理</p>
+
+<pre><code>var cursor = db.users.find();
+cursor[4];
+</code></pre>
+
+<p>取得下标索引为4的那条数据
+既然可以当做数组处理，那么就可以获得它的长度：cursor.length();或者cursor.count();
+那样我们也可以用循环显示数据</p>
+
+<pre><code>for (var i = 0, len = c.length(); i &lt; len; i++) printjson(c[i]);
+</code></pre>
+
+<ol>
+<li>将find游标转换成数组
+<code>
+&gt; var arr = db.users.find().toArray();
+&gt; printjson(arr[2]);
+</code></li>
+</ol>
+
+<p>用toArray方法将其转换为数组
+8. 定制我们自己的查询结果
+只显示age &lt;= 28的并且只显示age这列数据</p>
+
+<pre><code>db.users.find({age: {$lte: 28}}, {age: 1}).forEach(printjson);
+db.users.find({age: {$lte: 28}}, {age: true}).forEach(printjson);
+</code></pre>
+
+<p>排除age的列</p>
+
+<pre><code>db.users.find({age: {$lte: 28}}, {age: false}).forEach(printjson);
+</code></pre>
+
+<ol>
+<li>forEach传递函数显示信息
+<code>
+db.things.find({x:4}).forEach(function(x) {print(tojson(x));});
+</code></li>
+</ol>
+
+<p><span id = '8'>八. 其他</span>
+1. 查询之前的错误信息</p>
+
+<pre><code>db.getPrevError();
+</code></pre>
+
+<ol>
+<li>清除错误记录
+<code>
+db.resetError();
+</code></li>
+</ol>
+
+<p>查看聚集集合基本信息
+1. 查看帮助  <code>db.yourColl.help();</code>
+2. 查询当前集合的数据条数  <code>db.yourColl.count();</code>
+3. 查看数据空间大小 <code>db.userInfo.dataSize();</code>
+4. 得到当前聚集集合所在的db <code>db.userInfo.getDB();</code>
+5. 得到当前聚集的状态 <code>db.userInfo.stats();</code>
+6. 得到聚集集合总大小 <code>db.userInfo.totalSize();</code>
+7. 聚集集合储存空间大小 <code>db.userInfo.storageSize();</code>
+8. Shard版本信息  <code>db.userInfo.getShardVersion();</code>
+9. 聚集集合重命名 <code>db.userInfo.renameCollection(&quot;users&quot;);</code> 将userInfo重命名为users
+10. 删除当前聚集集合 <code>db.userInfo.drop();</code></p>
+
+<pre><code>show dbs:显示数据库列表
+show collections：显示当前数据库中的集合（类似关系数据库中的表）
+show users：显示用户
+use &lt;db name&gt;：切换当前数据库，这和MS-SQL里面的意思一样
+db.help()：显示数据库操作命令，里面有很多的命令
+db.foo.help()：显示集合操作命令，同样有很多的命令，foo指的是当前数据库下，一个叫foo的集合，并非真正意义上的命令
+db.foo.find()：对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据）
+db.foo.find( { a : 1 } )：对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1
+</code></pre>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://sung1011.github.io/tags/db/">db</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://sung1011.github.io/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      
+      <a href="https://sung1011.github.io/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="https://sung1011.github.io/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="https://sung1011.github.io/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
+      
+      <a href="https://sung1011.github.io/2017-04-01-lock/" class="list-group-item">Lock</a>
+      
+      <a href="https://sung1011.github.io/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
+      
+      <a href="https://sung1011.github.io/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
+      
+      <a href="https://sung1011.github.io/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
+      
+      <a href="https://sung1011.github.io/2017-04-03-scale/" class="list-group-item">Scale</a>
+      
+      <a href="https://sung1011.github.io/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
+      
+      <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
+      
+      <a href="https://sung1011.github.io/tags/fd" class="list-group-item">fd</a>
+      
+      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
+      
+      <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="https://sung1011.github.io/tags/novel" class="list-group-item">novel</a>
+      
+      <a href="https://sung1011.github.io/tags/php" class="list-group-item">php</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; tickles</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

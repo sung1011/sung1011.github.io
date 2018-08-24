@@ -6,16 +6,70 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.40" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/tags/vim/index.xml">
 
-<link rel="canonical" href="https://sung1011.github.io/tags/vim/">
+
+<link rel="canonical" href="https://sung1011.github.io/2017-04-08-vim-sort/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Vim - tickles</title>
+    <title>Vim-sort - tickles</title>
     
+<meta name="description" content="vim sort">
+
+<meta property="og:title" content="Vim-sort - tickles">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sung1011.github.io/2017-04-08-vim-sort/">
+<meta property="og:image" content="https://sung1011.github.io/images/default.png">
+<meta property="og:site_name" content="tickles">
+<meta property="og:description" content="vim sort">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tickles">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-04-08-vim-sort/">
+<meta name="twitter:title" content="Vim-sort - tickles">
+<meta name="twitter:description" content="vim sort">
+<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://sung1011.github.io/"
+    },
+    "headline": "Vim-sort - tickles",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://sung1011.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "0001-01-01T00:00:00JST",
+    "dateModified": "0001-01-01T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "tickles"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "tickles",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sung1011.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "vim sort"
+  }
+</script>
+
+
     <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
     
 
@@ -51,55 +105,109 @@
 <div class="row">
   <div class="col-md-8">
 
-    
-    <header class="page-header">
-      <h1>Vim</h1>
-    </header>
-    
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Vim-sort</li>
+      </ol>
+    </nav>
 
-    <ul class="p-articles">
-      
-      <li><article class="li">
+    <article class="single">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
       
       
     </ul>
-    <h2 class="title"><a href="https://sung1011.github.io/2017-04-08-vim-sort/">Vim-sort</a></h2>
+
+    <h1 class="title">Vim-sort</h1>
   </header>
 
   
-  <div class="summary">vim sort 1：如果我们想以第4列数据进行排序，可以在vim中如此做： 1，12!sort -r -n -k4.1,5  -r 是降序排序
--n 是按数字大小排序
--k,表示根据那个字段排序，4.1,表示第4列第一个字符开始 ，5表示到第5个字段为结束
--t 后面跟分隔符，缺省是空格
-2：在VIM里面, 如果你要把从当前行以下20行按字母顺序排序 只要输入:.,+20!sort  3：用vi 來看log檔常要排序一下資料 可以用外部的sort 程式協助排序
-令用法如下:
-:1,$!sort -k 3  表示從第1列開始, 以第3 欄資料進行排序
-:4,$!sort -k 3  表示從第4列開始, 以第3 欄資料進行排序 給有標題的文件用
-:1,$!sort -k 4 -t&quot;.&quot;  表示從第1列開始, 以第8 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo;
-結果會如下 :
-192.168.1.20
-192.168.1.218
-192.168.1.22
-218 竟然排在 22 的前面? 是因為以&rdquo;文字順序&rdquo;排序的關係
-:1,$!sort -k 4 -t&quot;.&quot; -n  表示從第1列開始, 以第4 欄資料進行排序, 分欄字元是 &ldquo;.</div>
 
-  
-  <footer>
-    <a href="https://sung1011.github.io/2017-04-08-vim-sort/" title="Vim-sort">Read More…</a>
+  <div class="article-body">
+
+<h1 id="vim-sort">vim sort</h1>
+
+<h2 id="1-如果我们想以第4列数据进行排序-可以在vim中如此做">1：如果我们想以第4列数据进行排序，可以在vim中如此做：</h2>
+
+<pre><code>1，12!sort -r -n -k4.1,5
+</code></pre>
+
+<p>-r 是降序排序<br />
+-n 是按数字大小排序<br />
+-k,表示根据那个字段排序，4.1,表示第4列第一个字符开始 ，5表示到第5个字段为结束<br />
+-t 后面跟分隔符，缺省是空格</p>
+
+<h2 id="2-在vim里面-如果你要把从当前行以下20行按字母顺序排序">2：在VIM里面, 如果你要把从当前行以下20行按字母顺序排序</h2>
+
+<pre><code>只要输入:.,+20!sort
+</code></pre>
+
+<h2 id="3-用vi-來看log檔常要排序一下資料">3：用vi 來看log檔常要排序一下資料</h2>
+
+<p>可以用外部的sort 程式協助排序<br />
+令用法如下:</p>
+
+<pre><code>:1,$!sort -k 3
+</code></pre>
+
+<p>表示從第1列開始, 以第3 欄資料進行排序</p>
+
+<pre><code>:4,$!sort -k 3
+</code></pre>
+
+<p>表示從第4列開始, 以第3 欄資料進行排序 給有標題的文件用</p>
+
+<pre><code>:1,$!sort -k 4 -t&quot;.&quot;
+</code></pre>
+
+<p>表示從第1列開始, 以第8 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo;<br />
+結果會如下 :<br />
+192.168.1.20<br />
+192.168.1.218<br />
+192.168.1.22<br />
+218 竟然排在 22 的前面? 是因為以&rdquo;文字順序&rdquo;排序的關係</p>
+
+<pre><code>:1,$!sort -k 4 -t&quot;.&quot; -n
+</code></pre>
+
+<p>表示從第1列開始, 以第4 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo; , 並且依數字大小而非文字順序排序<br />
+結果會改變如下<br />
+192.168.1.20<br />
+192.168.1.23<br />
+192.168.1.218</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://sung1011.github.io/tags/vim/">vim</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
   </footer>
-  
+
 </article>
-</li>
-      
-    </ul>
+
 
     
-
-
   </div>
+
   <div class="col-md-4">
     
 <aside class="l-sidebar">

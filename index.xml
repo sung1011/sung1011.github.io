@@ -256,14 +256,16 @@ ciphertext(密文) ==&amp;gt; 转换算法 ==&amp;gt; plaintext(明文)  二、�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/2017-04-11-golang-grammer/</guid>
-      <description>出处&amp;mdash;Go编程语言
- 欢迎来到 Go 编程语言指南。本指南涵盖了该语言的大部分重要特性 Go 语言的交互式简介，它分为三节。第一节覆盖了基本语法及数据结构，第二节讨论了方法与接口， 第三节则简单介绍了 Go 的并发原语。每节末尾都有几个练习，你可以对自己的所学进行实践。 你可以 在线学习 或 安装到本地。  Go基础语法，方便查阅
+      <description>Go基础语法，方便查阅
 包、变量和函数  学习 Go 程序的基本组件  1.包  每个 Go 程序都是由包组成的。 程序运行的入口是包 main。 这个程序使用并导入了包 &amp;ldquo;fmt&amp;rdquo; 和 &amp;ldquo;math/rand&amp;rdquo; 。 按照惯例，包名与导入路径的最后一个目录一致。例如，&amp;rdquo;math/rand&amp;rdquo; 包由 package rand 语句开始。 注意：这个程序的运行环境是确定性的，因此 rand.Intn每次都会返回相同的数字。 （为了得到不同的随机数，需要提供一个随机数种子，参阅 rand.Seed。）
 package main
 import ( &amp;ldquo;fmt&amp;rdquo; &amp;ldquo;math/rand&amp;rdquo; )
 func main() { fmt.Println(&amp;ldquo;My favorite number is&amp;rdquo;, rand.Intn(10)) } `
  结果 My favorite number is 1 
-2.导入 这个代码用圆括号组合了导入，这是“打包”导入语句。</description>
+2.导入 这个代码用圆括号组合了导入，这是“打包”导入语句。
+ 同样可以编写多个导入语句，例如： import &amp;quot;fmt&amp;quot; import &amp;quot;math&amp;quot; 
+ 不过使用打包的导入语句是更好的形式。 `package main
+import ( &amp;ldquo;fmt&amp;rdquo; &amp;ldquo;math&amp;rdquo; )</description>
     </item>
     
     <item>

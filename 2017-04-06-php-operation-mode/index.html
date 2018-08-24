@@ -6,16 +6,70 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.40" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/tags/vim/index.xml">
 
-<link rel="canonical" href="https://sung1011.github.io/tags/vim/">
+
+<link rel="canonical" href="https://sung1011.github.io/2017-04-06-php-operation-mode/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Vim - tickles</title>
+    <title>Php-operation-mode - tickles</title>
     
+<meta name="description" content="php运行模式">
+
+<meta property="og:title" content="Php-operation-mode - tickles">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sung1011.github.io/2017-04-06-php-operation-mode/">
+<meta property="og:image" content="https://sung1011.github.io/images/default.png">
+<meta property="og:site_name" content="tickles">
+<meta property="og:description" content="php运行模式">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tickles">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-04-06-php-operation-mode/">
+<meta name="twitter:title" content="Php-operation-mode - tickles">
+<meta name="twitter:description" content="php运行模式">
+<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://sung1011.github.io/"
+    },
+    "headline": "Php-operation-mode - tickles",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://sung1011.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "0001-01-01T00:00:00JST",
+    "dateModified": "0001-01-01T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "tickles"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "tickles",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sung1011.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "php运行模式"
+  }
+</script>
+
+
     <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
     
 
@@ -51,55 +105,96 @@
 <div class="row">
   <div class="col-md-8">
 
-    
-    <header class="page-header">
-      <h1>Vim</h1>
-    </header>
-    
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Php-operation-mode</li>
+      </ol>
+    </nav>
 
-    <ul class="p-articles">
-      
-      <li><article class="li">
+    <article class="single">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
       
       
     </ul>
-    <h2 class="title"><a href="https://sung1011.github.io/2017-04-08-vim-sort/">Vim-sort</a></h2>
+
+    <h1 class="title">Php-operation-mode</h1>
   </header>
 
   
-  <div class="summary">vim sort 1：如果我们想以第4列数据进行排序，可以在vim中如此做： 1，12!sort -r -n -k4.1,5  -r 是降序排序
--n 是按数字大小排序
--k,表示根据那个字段排序，4.1,表示第4列第一个字符开始 ，5表示到第5个字段为结束
--t 后面跟分隔符，缺省是空格
-2：在VIM里面, 如果你要把从当前行以下20行按字母顺序排序 只要输入:.,+20!sort  3：用vi 來看log檔常要排序一下資料 可以用外部的sort 程式協助排序
-令用法如下:
-:1,$!sort -k 3  表示從第1列開始, 以第3 欄資料進行排序
-:4,$!sort -k 3  表示從第4列開始, 以第3 欄資料進行排序 給有標題的文件用
-:1,$!sort -k 4 -t&quot;.&quot;  表示從第1列開始, 以第8 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo;
-結果會如下 :
-192.168.1.20
-192.168.1.218
-192.168.1.22
-218 竟然排在 22 的前面? 是因為以&rdquo;文字順序&rdquo;排序的關係
-:1,$!sort -k 4 -t&quot;.&quot; -n  表示從第1列開始, 以第4 欄資料進行排序, 分欄字元是 &ldquo;.</div>
 
-  
-  <footer>
-    <a href="https://sung1011.github.io/2017-04-08-vim-sort/" title="Vim-sort">Read More…</a>
+  <div class="article-body">
+
+<h3 id="code">code</h3>
+
+<pre><code>exec $源代码(人认识); // 执行源代码
+
+exec $字节码(解释器认识); // 执行字节码
+
+exec $机器码(硬件认识); // 执行机器码
+</code></pre>
+
+<h3 id="php-code">php code</h3>
+
+<pre><code>exec *.php; // 执行php源代码
+
+if(!exist($opcache)) { // 是否存在opcache字节码
+
+    init $opcode; // zend编译生成opcode字节码
+
+    $opcache = $opcode; // 生成opcache字节码缓存
+
+} 
+
+exec opcache; // php解释器执行opcache字节码缓存
+
+exec 机器码; // 执行机器码
+</code></pre>
+
+<h3 id="php-jit">php jit</h3>
+
+<pre><code>
+if(!exist(机器码)) { // 是否存在机器码
+
+    init 机器码; // jit编译生成机器码
+
+}
+
+exec 机器码; // 执行机器码
+</code></pre>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://sung1011.github.io/tags/php/">php</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
   </footer>
-  
+
 </article>
-</li>
-      
-    </ul>
+
 
     
-
-
   </div>
+
   <div class="col-md-4">
     
 <aside class="l-sidebar">
