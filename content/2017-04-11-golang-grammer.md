@@ -6,10 +6,7 @@ description: golang语法
  - go
 description: go basic
 ---
-**出处**---[Go编程语言](https://link.jianshu.com?t=https://go-zh.org/doc/)
 
-*   欢迎来到 [Go 编程语言](https://link.jianshu.com?t=http://golang.org/)指南。本指南涵盖了该语言的大部分重要特性
-*   Go 语言的交互式简介，它分为三节。第一节覆盖了基本语法及数据结构，第二节讨论了方法与接口， 第三节则简单介绍了 Go 的并发原语。每节末尾都有几个练习，你可以对自己的所学进行实践。 你可以 [在线学习](https://link.jianshu.com?t=http://go-tour-zh.appspot.com/) 或 [安装到本地](https://link.jianshu.com?t=https://bitbucket.org/mikespook/go-tour-zh/)。
 
 **Go基础语法，方便查阅**
 

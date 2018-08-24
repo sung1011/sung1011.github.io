@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Db on My New Hugo Site</title>
-    <link>http://example.org/tags/db/</link>
-    <description>Recent content in Db on My New Hugo Site</description>
+    <title>Db on tickles</title>
+    <link>https://sung1011.github.io/tags/db/</link>
+    <description>Recent content in Db on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="http://example.org/tags/db/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sung1011.github.io/tags/db/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mongodb-command</title>
-      <link>http://example.org/2017-03-31-mongodb-command/</link>
+      <link>https://sung1011.github.io/2017-03-31-mongodb-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2017-03-31-mongodb-command/</guid>
+      <guid>https://sung1011.github.io/2017-03-31-mongodb-command/</guid>
       <description>Mongo shell 一. 数据库常用命令
 二. Collection聚集集合
 三. 用户相关

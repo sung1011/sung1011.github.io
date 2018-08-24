@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.40" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="http://example.org/index.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/index.xml">
 
-<link rel="canonical" href="http://example.org/">
+<link rel="canonical" href="https://sung1011.github.io/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>My New Hugo Site</title>
+    <title>tickles</title>
     
-    <link href="http://example.org/css/styles.css" rel="stylesheet">
+    <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
     
 
   </head>
@@ -36,7 +36,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://example.org/">My New Hugo Site</a>
+            <a class="navbar-brand" href="https://sung1011.github.io/">tickles</a>
           </div>
 
           
@@ -62,7 +62,7 @@
       
       
     </ul>
-    <h2 class="title"><a href="http://example.org/2017-04-08-vim-sort/">Vim-sort</a></h2>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-08-vim-sort/">Vim-sort</a></h2>
   </header>
 
   
@@ -84,7 +84,7 @@
 
   
   <footer>
-    <a href="http://example.org/2017-04-08-vim-sort/" title="Vim-sort">Read More…</a>
+    <a href="https://sung1011.github.io/2017-04-08-vim-sort/" title="Vim-sort">Read More…</a>
   </footer>
   
 </article>
@@ -97,7 +97,7 @@
       
       
     </ul>
-    <h2 class="title"><a href="http://example.org/2017-04-10-encrypted/">encrypted</a></h2>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-10-encrypted/">encrypted</a></h2>
   </header>
 
   
@@ -117,7 +117,7 @@ ciphertext(密文) ==&gt; 转换算法 ==&gt; plaintext(明文)  二、数据加
 
   
   <footer>
-    <a href="http://example.org/2017-04-10-encrypted/" title="encrypted">Read More…</a>
+    <a href="https://sung1011.github.io/2017-04-10-encrypted/" title="encrypted">Read More…</a>
   </footer>
   
 </article>
@@ -130,22 +130,65 @@ ciphertext(密文) ==&gt; 转换算法 ==&gt; plaintext(明文)  二、数据加
       
       
     </ul>
-    <h2 class="title"><a href="http://example.org/2018-04-11-golang-grammer/">golang-grammer</a></h2>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-13-fd/">fd</a></h2>
   </header>
 
   
-  <div class="summary">出处&mdash;Go编程语言
- 欢迎来到 Go 编程语言指南。本指南涵盖了该语言的大部分重要特性 Go 语言的交互式简介，它分为三节。第一节覆盖了基本语法及数据结构，第二节讨论了方法与接口， 第三节则简单介绍了 Go 的并发原语。每节末尾都有几个练习，你可以对自己的所学进行实践。 你可以 在线学习 或 安装到本地。  Go基础语法，方便查阅
+  <div class="summary">在Linux通用I/O模型中，I/O操作系列函数(系统调用)都是围绕一个叫做文件描述符的整数展开。这不禁让人产生疑问：这个整数代表什么？一个数值代表一个文件吗？随便传一个整数进去调用可以吗？
+解答以上疑问，需要更深入学习——文件描述符(File Descriptor)。
+图解 理解具体情况，需要了解由内核维护的3个数据结构：
+ 进程级文件描述符表(file descriptor table) 系统级打开文件表(open file table) 文件系统i-node表(i-node table)  这3个数据结构之间的关系如下图所示：
+////&mdash;&mdash;-
+文件描述符表 内核为每个进程维护一个文件描述符表，该表每一条目都记录了单个文件描述符的相关信息，包括：
+ 控制标志(flags)，目前内核仅定义了一个，即close-on-exec
+ 打开文件描述体指针
+  打开文件表 内核对所有打开的文件维护一个系统级别的打开文件描述表(open file description table)，简称打开文件表。表中条目称为打开文件描述体(open file description)，存储了与一个打开文件相关的全部信息，包括：
+ 文件偏移量(file offset)，调用read()和write()更新，调用lseek()直接修改 访问模式，由open()调用设置，例如：只读、只写或读写等 i-node对象指针  i-node表 每个文件系统会为存储于其上的所有文件(包括目录)维护一个i-node表，单个i-node包含以下信息：
+ 文件类型(file type)，可以是常规文件、目录、套接字或FIFO
+ 访问权限
+ 文件锁列表(file locks)
+ 文件大小
+ 等等
+  i-node存储在磁盘设备上，内核在内存中维护了一个副本，这里的i-node表为后者。副本除了原有信息，还包括：引用计数(从打开文件描述体)、所在设备号以及一些临时属性，例如文件锁。
+场景解析 上图中，详细描述了两个进程诸多文件描述符，以及相互关系。
+文件描述符复制 在进程A中，文件描述符1和文件描述符20都指向同一个打开文件描述体(标号23)。这很可能是通过调用dup()系列函数形成的。
+文件描述符复制，在某些场景下非常有用，比如：标准输入/输出重定向。在shell下，完成这个操作非常简单，大部分人都会，但是极少人思考过背后的原理。
+大概描述一下需要的几个步骤，以标准输出(文件描述符为1)重定向为例：
+ 打开目标文件，返回文件描述符n； 关闭文件描述符1； 调用dup将文件描述符n复制到1； 关闭文件描述符n；  子进程继承文件描述符 进程A的文件描述符2和进程B的文件描述符2都指向同一个打开文件描述体(标号73)。这种情形很可能发生在调用fork()派生子进程之后，比如A调用fork()派生出B。这时，B作为子进程，从父进程A继承了文件描述符表，其中包括图中标明的文件描述符2。这就是子进程继承父进程打开的文件这句话的由来。</div>
+
+  
+  <footer>
+    <a href="https://sung1011.github.io/2017-04-13-fd/" title="fd">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-11-golang-grammer/">golang-grammer</a></h2>
+  </header>
+
+  
+  <div class="summary">Go基础语法，方便查阅
 包、变量和函数  学习 Go 程序的基本组件  1.包  每个 Go 程序都是由包组成的。 程序运行的入口是包 main。 这个程序使用并导入了包 &ldquo;fmt&rdquo; 和 &ldquo;math/rand&rdquo; 。 按照惯例，包名与导入路径的最后一个目录一致。例如，&rdquo;math/rand&rdquo; 包由 package rand 语句开始。 注意：这个程序的运行环境是确定性的，因此 rand.Intn每次都会返回相同的数字。 （为了得到不同的随机数，需要提供一个随机数种子，参阅 rand.Seed。）
 package main
 import ( &ldquo;fmt&rdquo; &ldquo;math/rand&rdquo; )
 func main() { fmt.Println(&ldquo;My favorite number is&rdquo;, rand.Intn(10)) } `
  结果 My favorite number is 1 
-2.导入 这个代码用圆括号组合了导入，这是“打包”导入语句。</div>
+2.导入 这个代码用圆括号组合了导入，这是“打包”导入语句。
+ 同样可以编写多个导入语句，例如： import &quot;fmt&quot; import &quot;math&quot; 
+ 不过使用打包的导入语句是更好的形式。 `package main
+import ( &ldquo;fmt&rdquo; &ldquo;math&rdquo; )</div>
 
   
   <footer>
-    <a href="http://example.org/2018-04-11-golang-grammer/" title="golang-grammer">Read More…</a>
+    <a href="https://sung1011.github.io/2017-04-11-golang-grammer/" title="golang-grammer">Read More…</a>
   </footer>
   
 </article>
@@ -158,7 +201,7 @@ func main() { fmt.Println(&ldquo;My favorite number is&rdquo;, rand.Intn(10)) } 
       
       
     </ul>
-    <h2 class="title"><a href="http://example.org/2018-04-12-golang-nobuff-chan/">golang-grammer</a></h2>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">golang-grammer</a></h2>
   </header>
 
   
@@ -199,25 +242,25 @@ buff 带缓存的Channel内部持有一个元素队列。</div>
     </div>
     <div class="list-group">
       
-      <a href="http://example.org/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      <a href="https://sung1011.github.io/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
       
-      <a href="http://example.org/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      <a href="https://sung1011.github.io/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
       
-      <a href="http://example.org/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      <a href="https://sung1011.github.io/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
       
-      <a href="http://example.org/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
+      <a href="https://sung1011.github.io/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
       
-      <a href="http://example.org/2017-04-01-lock/" class="list-group-item">Lock</a>
+      <a href="https://sung1011.github.io/2017-04-01-lock/" class="list-group-item">Lock</a>
       
-      <a href="http://example.org/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
+      <a href="https://sung1011.github.io/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
       
-      <a href="http://example.org/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
+      <a href="https://sung1011.github.io/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
       
-      <a href="http://example.org/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
+      <a href="https://sung1011.github.io/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
       
-      <a href="http://example.org/2017-04-03-scale/" class="list-group-item">Scale</a>
+      <a href="https://sung1011.github.io/2017-04-03-scale/" class="list-group-item">Scale</a>
       
-      <a href="http://example.org/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
+      <a href="https://sung1011.github.io/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
       
     </div>
   </section>
@@ -238,25 +281,25 @@ buff 带缓存的Channel内部持有一个元素队列。</div>
     </div>
     <div class="list-group">
       
-      <a href="http://example.org/tags/basic" class="list-group-item">basic</a>
+      <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
       
-      <a href="http://example.org/tags/c" class="list-group-item">c</a>
+      <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
       
-      <a href="http://example.org/tags/db" class="list-group-item">db</a>
+      <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
       
-      <a href="http://example.org/tags/go" class="list-group-item">go</a>
+      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
       
-      <a href="http://example.org/tags/ide" class="list-group-item">ide</a>
+      <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
       
-      <a href="http://example.org/tags/linux" class="list-group-item">linux</a>
+      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
       
-      <a href="http://example.org/tags/nginx" class="list-group-item">nginx</a>
+      <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
       
-      <a href="http://example.org/tags/novel" class="list-group-item">novel</a>
+      <a href="https://sung1011.github.io/tags/novel" class="list-group-item">novel</a>
       
-      <a href="http://example.org/tags/php" class="list-group-item">php</a>
+      <a href="https://sung1011.github.io/tags/php" class="list-group-item">php</a>
       
-      <a href="http://example.org/tags/vim" class="list-group-item">vim</a>
+      <a href="https://sung1011.github.io/tags/vim" class="list-group-item">vim</a>
       
     </div>
   </section>
@@ -273,7 +316,7 @@ buff 带缓存的Channel内部持有一个元素队列。</div>
 
     <footer class="l-footer">
       <div class="container">
-        <p><span class="h-logo">&copy; My New Hugo Site</span></p>
+        <p><span class="h-logo">&copy; tickles</span></p>
         <aside>
           <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
           <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>

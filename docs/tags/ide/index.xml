@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ide on My New Hugo Site</title>
-    <link>http://example.org/tags/ide/</link>
-    <description>Recent content in Ide on My New Hugo Site</description>
+    <title>Ide on tickles</title>
+    <link>https://sung1011.github.io/tags/ide/</link>
+    <description>Recent content in Ide on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="http://example.org/tags/ide/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sung1011.github.io/tags/ide/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Vim-keybindings</title>
-      <link>http://example.org/2017-04-04-vim-keybindings/</link>
+      <link>https://sung1011.github.io/2017-04-04-vim-keybindings/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2017-04-04-vim-keybindings/</guid>
+      <guid>https://sung1011.github.io/2017-04-04-vim-keybindings/</guid>
       <description>vim 快捷键  vi（vim）是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。
  vi有3个模式：插入模式、命令模式、低行模式  插入模式：在此模式下可以输入字符，按ESC将回到命令模式。
 命令模式：可以移动光标、删除字符等。

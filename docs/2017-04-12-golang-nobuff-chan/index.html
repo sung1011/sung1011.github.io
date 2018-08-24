@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://sung1011.github.io/2017-04-08-vim-sort/">
+<link rel="canonical" href="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Vim-sort - tickles</title>
+    <title>golang-grammer - tickles</title>
     
-<meta name="description" content="vim sort">
+<meta name="description" content="go basic">
 
-<meta property="og:title" content="Vim-sort - tickles">
+<meta property="og:title" content="golang-grammer - tickles">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://sung1011.github.io/2017-04-08-vim-sort/">
+<meta property="og:url" content="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">
 <meta property="og:image" content="https://sung1011.github.io/images/default.png">
 <meta property="og:site_name" content="tickles">
-<meta property="og:description" content="vim sort">
+<meta property="og:description" content="go basic">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="tickles">
-<meta name="twitter:url" content="https://sung1011.github.io/2017-04-08-vim-sort/">
-<meta name="twitter:title" content="Vim-sort - tickles">
-<meta name="twitter:description" content="vim sort">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">
+<meta name="twitter:title" content="golang-grammer - tickles">
+<meta name="twitter:description" content="go basic">
 <meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
 
 
@@ -42,7 +42,7 @@
       "@type": "WebPage",
       "@id":"https://sung1011.github.io/"
     },
-    "headline": "Vim-sort - tickles",
+    "headline": "golang-grammer - tickles",
     "image": {
       "@type": "ImageObject",
       "url": "https://sung1011.github.io/images/default.png",
@@ -65,7 +65,7 @@
         "height": 60
       }
     },
-    "description": "vim sort"
+    "description": "go basic"
   }
 </script>
 
@@ -109,7 +109,7 @@
       <ol class="breadcrumb">
         <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li class="active">Vim-sort</li>
+        <li class="active">golang-grammer</li>
       </ol>
     </nav>
 
@@ -121,63 +121,25 @@
       
     </ul>
 
-    <h1 class="title">Vim-sort</h1>
+    <h1 class="title">golang-grammer</h1>
   </header>
 
   
 
   <div class="article-body">
 
-<h1 id="vim-sort">vim sort</h1>
+<h1 id="chan">chan</h1>
 
-<h2 id="1-如果我们想以第4列数据进行排序-可以在vim中如此做">1：如果我们想以第4列数据进行排序，可以在vim中如此做：</h2>
+<h3 id="nobuff">nobuff</h3>
 
-<pre><code>1，12!sort -r -n -k4.1,5
-</code></pre>
+<p>一个基于无缓存Channels的发送操作将导致发送者goroutine阻塞，直到另一个goroutine在相同的
+Channels上执行接收操作，当发送的值通过Channels成功传输之后，两个goroutine可以继续执行
+后面的语句。反之，如果接收操作先发生，那么接收者goroutine也将阻塞，直到有另一个
+goroutine在相同的Channels上执行发送操作。</p>
 
-<p>-r 是降序排序<br />
--n 是按数字大小排序<br />
--k,表示根据那个字段排序，4.1,表示第4列第一个字符开始 ，5表示到第5个字段为结束<br />
--t 后面跟分隔符，缺省是空格</p>
+<h3 id="buff">buff</h3>
 
-<h2 id="2-在vim里面-如果你要把从当前行以下20行按字母顺序排序">2：在VIM里面, 如果你要把从当前行以下20行按字母顺序排序</h2>
-
-<pre><code>只要输入:.,+20!sort
-</code></pre>
-
-<h2 id="3-用vi-來看log檔常要排序一下資料">3：用vi 來看log檔常要排序一下資料</h2>
-
-<p>可以用外部的sort 程式協助排序<br />
-令用法如下:</p>
-
-<pre><code>:1,$!sort -k 3
-</code></pre>
-
-<p>表示從第1列開始, 以第3 欄資料進行排序</p>
-
-<pre><code>:4,$!sort -k 3
-</code></pre>
-
-<p>表示從第4列開始, 以第3 欄資料進行排序 給有標題的文件用</p>
-
-<pre><code>:1,$!sort -k 4 -t&quot;.&quot;
-</code></pre>
-
-<p>表示從第1列開始, 以第8 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo;<br />
-結果會如下 :<br />
-192.168.1.20<br />
-192.168.1.218<br />
-192.168.1.22<br />
-218 竟然排在 22 的前面? 是因為以&rdquo;文字順序&rdquo;排序的關係</p>
-
-<pre><code>:1,$!sort -k 4 -t&quot;.&quot; -n
-</code></pre>
-
-<p>表示從第1列開始, 以第4 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo; , 並且依數字大小而非文字順序排序<br />
-結果會改變如下<br />
-192.168.1.20<br />
-192.168.1.23<br />
-192.168.1.218</p>
+<p>带缓存的Channel内部持有一个元素队列。</p>
 </div>
 
   <footer class="article-footer">
@@ -192,8 +154,6 @@
       </header>
       <div>
         <ul class="p-terms">
-          
-          <li><a href="https://sung1011.github.io/tags/vim/">vim</a></li>
           
         </ul>
       </div>
