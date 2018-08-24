@@ -7,7 +7,7 @@ hugo -t beg # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
 cd docs
-mv ./* ../
+mv -f ./* ../
 cd ..
 # Add changes to git.
 git add .
