@@ -6,16 +6,70 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.40" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/tags/php/index.xml">
 
-<link rel="canonical" href="https://sung1011.github.io/tags/php/">
+
+<link rel="canonical" href="https://sung1011.github.io/2017-04-03-scale/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Php - tickles</title>
+    <title>Scale - tickles</title>
     
+<meta name="description" content="scale">
+
+<meta property="og:title" content="Scale - tickles">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sung1011.github.io/2017-04-03-scale/">
+<meta property="og:image" content="https://sung1011.github.io/images/default.png">
+<meta property="og:site_name" content="tickles">
+<meta property="og:description" content="scale">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tickles">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-04-03-scale/">
+<meta name="twitter:title" content="Scale - tickles">
+<meta name="twitter:description" content="scale">
+<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://sung1011.github.io/"
+    },
+    "headline": "Scale - tickles",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://sung1011.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "0001-01-01T00:00:00JST",
+    "dateModified": "0001-01-01T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "tickles"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "tickles",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sung1011.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "scale"
+  }
+</script>
+
+
     <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
     
 
@@ -51,37 +105,79 @@
 <div class="row">
   <div class="col-md-8">
 
-    
-    <header class="page-header">
-      <h1>Php</h1>
-    </header>
-    
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Scale</li>
+      </ol>
+    </nav>
 
-    <ul class="p-articles">
-      
-      <li><article class="li">
+    <article class="single">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
       
       
     </ul>
-    <h2 class="title"><a href="https://sung1011.github.io/2017-04-06-php-operation-mode/">Php-operation-mode</a></h2>
+
+    <h1 class="title">Scale</h1>
   </header>
 
   
-  <div class="summary"> code exec $源代码(人认识); // 执行源代码 exec $字节码(解释器认识); // 执行字节码 exec $机器码(硬件认识); // 执行机器码  php code exec *.php; // 执行php源代码 if(!exist($opcache)) { // 是否存在opcache字节码 init $opcode; // zend编译生成opcode字节码 $opcache = $opcode; // 生成opcache字节码缓存 } exec opcache; // php解释器执行opcache字节码缓存 exec 机器码; // 执行机器码  php jit  if(!exist(机器码)) { // 是否存在机器码 init 机器码; // jit编译生成机器码 } exec 机器码; // 执行机器码  </div>
 
-  
+  <div class="article-body">
+
+<h1 id="scale">Scale</h1>
+
+<p>1英文字符(word,字符) = 2byte;[ASCII, Unicode, UTF-8]<br />
+1中文字符 = 2byte(B) [ASCII,Unicode];<br />
+1中文字符 = 3byte(B) [UTF-8];</p>
+
+<hr />
+
+<p>1B(byte，字节) = 8 bit(见下文);<br />
+1KB(Kibibyte，千字节) = 1024B = 2^10 B;<br />
+1MB(Mebibyte，兆字节，百万字节，简称“兆”) = 1024KB = 2^20 B;<br />
+1GB(Gigabyte，吉字节，十亿字节，又称“千兆”) = 1024MB = 2^30 B;<br />
+1TB(Terabyte，万亿字节，太字节) = 1024GB = 2^40 B;<br />
+1PB(Petabyte，千万亿字节，拍字节) = 1024TB = 2^50 B;<br />
+1EB(Exabyte，百亿亿字节，艾字节) = 1024PB = 2^60 B;<br />
+1ZB(Zettabyte，十万亿亿字节，泽字节) = 1024EB = 2^70 B;<br />
+1YB(Yottabyte，一亿亿亿字节，尧字节) = 1024ZB = 2^80 B;<br />
+1BB(Brontobyte，一千亿亿亿字节) = 1024YB = 2^90 B;<br />
+1NB(NonaByte，一百万亿亿亿字节) = 1024 BB = 2^100 B;<br />
+1DB(DoggaByte，十亿亿亿亿字节) = 1024 NB = 2^110 B;</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://sung1011.github.io/tags/basic/">basic</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
 </article>
-</li>
-      
-    </ul>
+
 
     
-
-
   </div>
+
   <div class="col-md-4">
     
 <aside class="l-sidebar">

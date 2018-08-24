@@ -2,9 +2,8 @@
 layout: post
 title: "golang-grammer"
 tags:
+    - go
 description: golang语法
- - go
-description: go basic
 ---
 
 

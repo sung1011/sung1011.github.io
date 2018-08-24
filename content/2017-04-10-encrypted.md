@@ -2,9 +2,8 @@
 layout: post
 title: "encrypted"
 tags:
-description: 网络数据传输安全及SSH与HTTPS工作原理
  - basic
-description: vim sort
+description: 网络数据传输安全及SSH与HTTPS工作原理
 ---
 一、网络数据传输安全概述
 ------------
