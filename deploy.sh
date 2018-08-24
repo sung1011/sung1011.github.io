@@ -7,7 +7,7 @@ hugo -t beg # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
 cd docs
-mv -f ./* ../
+mv -f ./* ../  # ！！！！！删除已经存在的文件夹
 cd ..
 # Add changes to git.
 git add .
