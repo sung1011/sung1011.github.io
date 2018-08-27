@@ -1,132 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.40" />
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> golang-grammer &middot; tickles </title>
 
 
+<link rel="stylesheet" href="https://sung1011.github.io/css/slim.css">
+<link rel="stylesheet" href="https://sung1011.github.io/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 
-<link rel="canonical" href="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">
-
-
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>golang-grammer - tickles</title>
-    
-<meta name="description" content="go basic">
-
-<meta property="og:title" content="golang-grammer - tickles">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">
-<meta property="og:image" content="https://sung1011.github.io/images/default.png">
-<meta property="og:site_name" content="tickles">
-<meta property="og:description" content="go basic">
-<meta property="og:locale" content="ja_JP">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="tickles">
-<meta name="twitter:url" content="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">
-<meta name="twitter:title" content="golang-grammer - tickles">
-<meta name="twitter:description" content="go basic">
-<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
 
 
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "NewsArticle",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id":"https://sung1011.github.io/"
-    },
-    "headline": "golang-grammer - tickles",
-    "image": {
-      "@type": "ImageObject",
-      "url": "https://sung1011.github.io/images/default.png",
-      "height": 800,
-      "width": 800
-    },
-    "datePublished": "0001-01-01T00:00:00JST",
-    "dateModified": "0001-01-01T00:00:00JST",
-    "author": {
-      "@type": "Person",
-      "name": "tickles"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "tickles",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://sung1011.github.io/images/logo.png",
-        "width": 600,
-        "height": 60
-      }
-    },
-    "description": "go basic"
-  }
-</script>
+<link href="" rel="alternate" type="application/rss+xml" title="tickles" />
 
+</head>
 
-    <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
-    
-
-  </head>
-
-  <body>
-    
-    
-    
-
-    <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://sung1011.github.io/">tickles</a>
-          </div>
-
-          
-
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    <nav class="p-crumb">
-      <ol class="breadcrumb">
-        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-        
-        <li class="active">golang-grammer</li>
-      </ol>
-    </nav>
-
-    <article class="single">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
-      
-      
-    </ul>
-
-    <h1 class="title">golang-grammer</h1>
-  </header>
-
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sung1011.github.io/">tickles</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
   
-
-  <div class="article-body">
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="post">
+        <h2 class="post-title"><a href="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/">golang-grammer</a></h2>
+        <div class="post-content">
+          
 
 <h1 id="chan">chan</h1>
 
@@ -140,130 +53,20 @@ goroutine在相同的Channels上执行发送操作。</p>
 <h3 id="buff">buff</h3>
 
 <p>带缓存的Channel内部持有一个元素队列。</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+  
+  <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+  
 </div>
 
-  <footer class="article-footer">
-    
-    
-    
-    
-    
-    <section class="bordered">
-      <header>
-        <div class="panel-title">TAGS</div>
-      </header>
-      <div>
-        <ul class="p-terms">
-          
-        </ul>
-      </div>
-    </section>
-    
-    
-  </footer>
-
-</article>
-
-
-    
   </div>
-
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">LATESTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://sung1011.github.io/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
-      
-      <a href="https://sung1011.github.io/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
-      
-      <a href="https://sung1011.github.io/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
-      
-      <a href="https://sung1011.github.io/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
-      
-      <a href="https://sung1011.github.io/2017-04-01-lock/" class="list-group-item">Lock</a>
-      
-      <a href="https://sung1011.github.io/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
-      
-      <a href="https://sung1011.github.io/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
-      
-      <a href="https://sung1011.github.io/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
-      
-      <a href="https://sung1011.github.io/2017-04-03-scale/" class="list-group-item">Scale</a>
-      
-      <a href="https://sung1011.github.io/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
-      
-    </div>
-  </section>
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-    </div>
-  </section>
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">TAG</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
-      
-      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
-      
-      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
-      
-      <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
-      
-      <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
-      
-      <a href="https://sung1011.github.io/tags/fd" class="list-group-item">fd</a>
-      
-      <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
-      
-      <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
-      
-      <a href="https://sung1011.github.io/tags/novel" class="list-group-item">novel</a>
-      
-      <a href="https://sung1011.github.io/tags/php" class="list-group-item">php</a>
-      
-    </div>
-  </section>
+  <script src="https://sung1011.github.io/js/slim.js"></script>
   
 
-</aside>
+</body>
 
-
-  </div>
-</div>
-
-      </div>
-    </main>
-
-    <footer class="l-footer">
-      <div class="container">
-        <p><span class="h-logo">&copy; tickles</span></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
-    </footer>
-
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
 </html>
-
