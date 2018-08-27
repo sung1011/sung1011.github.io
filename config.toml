@@ -1,3 +1,13 @@
 baseURL = "https://sung1011.github.io/"
 title = "tickles"
 publishDir = "docs"
+
+Subtitle = "https://sung1011.github.io"
+GithubID = "sung1011"
+TwitterID = "sung1011"
+AnalyticsID = "Your Google Analytics tracking code"
+DisqusShortname = "Your Disqus shortname"
+Summary = true  # takes true or false
+Content = false  # takes true or false
+# if both are set to true, summary is shown.
+# FooterMsg = "Copyright Me 2016. Powered by Hugo."
