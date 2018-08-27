@@ -31,5 +31,23 @@
  最后，提供了 Channel 机制，用于 Goroutine 之间通信，实现 CSP 并发模型（Communicating Sequential Processes）。因为 Go 的 Channel 是通过语法关键词提供的，对用户屏蔽了许多细节。其实 Go 的 Channel 和 Java 中的 SynchronousQueue 是一样的机制，如果有 buffer 其实就是 ArrayBlockQueue。</description>
     </item>
     
+    <item>
+      <title>golang-grammer</title>
+      <link>https://sung1011.github.io/2017-04-11-golang-grammer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sung1011.github.io/2017-04-11-golang-grammer/</guid>
+      <description>Go基础语法，方便查阅
+包、变量和函数  学习 Go 程序的基本组件  1.包  每个 Go 程序都是由包组成的。 程序运行的入口是包 main。 这个程序使用并导入了包 &amp;ldquo;fmt&amp;rdquo; 和 &amp;ldquo;math/rand&amp;rdquo; 。 按照惯例，包名与导入路径的最后一个目录一致。例如，&amp;rdquo;math/rand&amp;rdquo; 包由 package rand 语句开始。 注意：这个程序的运行环境是确定性的，因此 rand.Intn每次都会返回相同的数字。 （为了得到不同的随机数，需要提供一个随机数种子，参阅 rand.Seed。）
+package main
+import ( &amp;ldquo;fmt&amp;rdquo; &amp;ldquo;math/rand&amp;rdquo; )
+func main() { fmt.Println(&amp;ldquo;My favorite number is&amp;rdquo;, rand.Intn(10)) } `
+ 结果 My favorite number is 1 
+2.导入 这个代码用圆括号组合了导入，这是“打包”导入语句。
+ 同样可以编写多个导入语句，例如： import &amp;quot;fmt&amp;quot; import &amp;quot;math&amp;quot; 
+ 不过使用打包的导入语句是更好的形式。 `package main
+import ( &amp;ldquo;fmt&amp;rdquo; &amp;ldquo;math&amp;rdquo; )</description>
+    </item>
+    
   </channel>
 </rss>

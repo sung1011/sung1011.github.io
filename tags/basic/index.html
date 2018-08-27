@@ -112,6 +112,80 @@
 </article>
 </li>
       
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-10-encrypted/">encrypted</a></h2>
+  </header>
+
+  
+  <div class="summary">一、网络数据传输安全概述 我们说的数据加密与解密通常是为了保证数据在网络传输过程中的安全性。在网络发展初期，网络的数据安全性是没有被足够的重视的。事实上，当时为了实现数据可以通过网络进行传输已经耗费了科学家大部分男细胞，因此在TCP/IP协议设计的初期，他们也实在没有太多精力去过多考虑数据在网络传输过程中可能存在的安全性问题。随着TCP/IP协议及相关技术的日渐成熟，网络数据传输技术越来越稳定，人们才慢慢开始重视这个问题，美国国家标准与技术研究院（National Institue of Standard and Technology，简称NIST）也开始制定相关的安全标准。
+网络安全涉及到很多个方面，我们这里仅仅讨论下网络数据传输过程中可能受到的威胁，其中常见的有：
+ 数据窃听 数据篡改 身份伪装  针对以上威胁，我们介绍下网络数据传输的安全性涉及的几个方面：
+1. 机密性 机密性是指对要传输的数据进行加密和解密，防止第三方看到通信数据的明文内容。其对应的通信过程如下：
+数据发送方：
+plaintext(明文) ==&gt; 转换算法 ==&gt; ciphertext(密文)  数据接收方：
+ciphertext(密文) ==&gt; 转换算法 ==&gt; plaintext(明文)  2. 完整性 数据完整性是指不允许数据在传输过程中被修改（第三方恶意篡改或电平信号造成的部分数据丢失），但是它不要求数据的机密性，也就是说允许其他人看到明文数据。我们通常通过以不可逆的算法对数据提取特征码（也叫数据指纹），通过验证特征码的一致性来判断数据是否被修改过，通信过程如下：
+数据发送发：
+plaintext(明文) ==&gt; 转换算法 ==&gt; plaintext(明文) + footprint(数据指纹A)  数据接收方：
+plaintext(明文) + footprint(数据指纹A) ==&gt; 转换算法 ==&gt; footprint(数据指纹B) ==&gt; 对比数据指纹A与B是否一致  3. 身份验证 身份验证通常是指数据接收方需要确认发送数据给自己的数据是自己想要通信的那一方，防止他人冒充通信对方的身份进行通信。身份验证的大体原理是：数据发送方与数据接收方约定一种特殊的数据加解密方式，数据发送方将一个通过约定的加密方式进行加密后的数据发送给数据接收方，数据接收方如能按照约定的加密方式正确解密该数据就表示对数据发送方的身份验证成功。其对应的通信过程如下：
+数据发送方：
+plaintext(明文) ==&gt; 转换算法 ==&gt; ciphertext(密文)  数据接收方：
+ciphertext(密文) ==&gt; 转换算法 ==&gt; plaintext(明文)  二、数据加密算法分类 上面提到的网络数据传输所涉及到的几个方面都需要特定的转换算法来实现，常用的转换算法（数据加密/解密算法）大体上可以分为以下几类：</div>
+
+  
+  <footer>
+    <a href="https://sung1011.github.io/2017-04-10-encrypted/" title="encrypted">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-13-fd/">fd</a></h2>
+  </header>
+
+  
+  <div class="summary">在Linux通用I/O模型中，I/O操作系列函数(系统调用)都是围绕一个叫做文件描述符的整数展开。这不禁让人产生疑问：这个整数代表什么？一个数值代表一个文件吗？随便传一个整数进去调用可以吗？
+解答以上疑问，需要更深入学习——文件描述符(File Descriptor)。
+图解 理解具体情况，需要了解由内核维护的3个数据结构：
+ 进程级文件描述符表(file descriptor table) 系统级打开文件表(open file table) 文件系统i-node表(i-node table)  这3个数据结构之间的关系如下图所示：
+////&mdash;&mdash;-
+文件描述符表 内核为每个进程维护一个文件描述符表，该表每一条目都记录了单个文件描述符的相关信息，包括：
+ 控制标志(flags)，目前内核仅定义了一个，即close-on-exec
+ 打开文件描述体指针
+  打开文件表 内核对所有打开的文件维护一个系统级别的打开文件描述表(open file description table)，简称打开文件表。表中条目称为打开文件描述体(open file description)，存储了与一个打开文件相关的全部信息，包括：
+ 文件偏移量(file offset)，调用read()和write()更新，调用lseek()直接修改 访问模式，由open()调用设置，例如：只读、只写或读写等 i-node对象指针  i-node表 每个文件系统会为存储于其上的所有文件(包括目录)维护一个i-node表，单个i-node包含以下信息：
+ 文件类型(file type)，可以是常规文件、目录、套接字或FIFO
+ 访问权限
+ 文件锁列表(file locks)
+ 文件大小
+ 等等
+  i-node存储在磁盘设备上，内核在内存中维护了一个副本，这里的i-node表为后者。副本除了原有信息，还包括：引用计数(从打开文件描述体)、所在设备号以及一些临时属性，例如文件锁。
+场景解析 上图中，详细描述了两个进程诸多文件描述符，以及相互关系。
+文件描述符复制 在进程A中，文件描述符1和文件描述符20都指向同一个打开文件描述体(标号23)。这很可能是通过调用dup()系列函数形成的。
+文件描述符复制，在某些场景下非常有用，比如：标准输入/输出重定向。在shell下，完成这个操作非常简单，大部分人都会，但是极少人思考过背后的原理。
+大概描述一下需要的几个步骤，以标准输出(文件描述符为1)重定向为例：
+ 打开目标文件，返回文件描述符n； 关闭文件描述符1； 调用dup将文件描述符n复制到1； 关闭文件描述符n；  子进程继承文件描述符 进程A的文件描述符2和进程B的文件描述符2都指向同一个打开文件描述体(标号73)。这种情形很可能发生在调用fork()派生子进程之后，比如A调用fork()派生出B。这时，B作为子进程，从父进程A继承了文件描述符表，其中包括图中标明的文件描述符2。这就是子进程继承父进程打开的文件这句话的由来。</div>
+
+  
+  <footer>
+    <a href="https://sung1011.github.io/2017-04-13-fd/" title="fd">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
     </ul>
 
     
@@ -169,23 +243,23 @@
       
       <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
       
+      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
+      
+      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
+      
       <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
       
       <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
       
-      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
+      <a href="https://sung1011.github.io/tags/fd" class="list-group-item">fd</a>
       
       <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
-      
-      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
       
       <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
       
       <a href="https://sung1011.github.io/tags/novel" class="list-group-item">novel</a>
       
       <a href="https://sung1011.github.io/tags/php" class="list-group-item">php</a>
-      
-      <a href="https://sung1011.github.io/tags/vim" class="list-group-item">vim</a>
       
     </div>
   </section>

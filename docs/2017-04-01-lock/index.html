@@ -6,16 +6,70 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.40" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/tags/php/index.xml">
 
-<link rel="canonical" href="https://sung1011.github.io/tags/php/">
+
+<link rel="canonical" href="https://sung1011.github.io/2017-04-01-lock/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Php - tickles</title>
+    <title>Lock - tickles</title>
     
+<meta name="description" content="pessimistic &amp;&amp; optimistic Lock.">
+
+<meta property="og:title" content="Lock - tickles">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sung1011.github.io/2017-04-01-lock/">
+<meta property="og:image" content="https://sung1011.github.io/images/default.png">
+<meta property="og:site_name" content="tickles">
+<meta property="og:description" content="pessimistic &amp;&amp; optimistic Lock.">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tickles">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-04-01-lock/">
+<meta name="twitter:title" content="Lock - tickles">
+<meta name="twitter:description" content="pessimistic &amp;&amp; optimistic Lock.">
+<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://sung1011.github.io/"
+    },
+    "headline": "Lock - tickles",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://sung1011.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "0001-01-01T00:00:00JST",
+    "dateModified": "0001-01-01T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "tickles"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "tickles",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sung1011.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "pessimistic &amp;&amp; optimistic Lock."
+  }
+</script>
+
+
     <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
     
 
@@ -51,37 +105,73 @@
 <div class="row">
   <div class="col-md-8">
 
-    
-    <header class="page-header">
-      <h1>Php</h1>
-    </header>
-    
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Lock</li>
+      </ol>
+    </nav>
 
-    <ul class="p-articles">
-      
-      <li><article class="li">
+    <article class="single">
   <header>
     <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
       
       
     </ul>
-    <h2 class="title"><a href="https://sung1011.github.io/2017-04-06-php-operation-mode/">Php-operation-mode</a></h2>
+
+    <h1 class="title">Lock</h1>
   </header>
 
   
-  <div class="summary"> code exec $源代码(人认识); // 执行源代码 exec $字节码(解释器认识); // 执行字节码 exec $机器码(硬件认识); // 执行机器码  php code exec *.php; // 执行php源代码 if(!exist($opcache)) { // 是否存在opcache字节码 init $opcode; // zend编译生成opcode字节码 $opcache = $opcode; // 生成opcache字节码缓存 } exec opcache; // php解释器执行opcache字节码缓存 exec 机器码; // 执行机器码  php jit  if(!exist(机器码)) { // 是否存在机器码 init 机器码; // jit编译生成机器码 } exec 机器码; // 执行机器码  </div>
 
-  
+  <div class="article-body">
+
+<p>#lock</p>
+
+<h3 id="悲观锁-pessimistic-lock">悲观锁(Pessimistic Lock):</h3>
+
+<p>顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。
+传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+
+<h3 id="乐观锁-optimistic-lock">乐观锁(Optimistic Lock):</h3>
+
+<p>顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。
+乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。</p>
+
+<p>两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下，即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。
+但如果经常产生冲突，上层应用会不断的进行retry，这样反倒是降低了性能，所以这种情况下用悲观锁就比较合适。</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://sung1011.github.io/tags/basic/">basic</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
 </article>
-</li>
-      
-    </ul>
+
 
     
-
-
   </div>
+
   <div class="col-md-4">
     
 <aside class="l-sidebar">
