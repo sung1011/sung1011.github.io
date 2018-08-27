@@ -6,9 +6,10 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 hugo -t beg # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
-cd docs
-cp -rf ./* ../  # ！！！！！删除已经存在的文件夹
-cd ..
+# cd docs
+# cp -rf ./* ../  # ！！！！！删除已经存在的文件夹
+ln -s docs/* .
+# cd ..
 # Add changes to git.
 git add .
 
