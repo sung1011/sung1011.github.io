@@ -1,7 +1,7 @@
 # sung1011.github.io
 
 ## edit
-`cd hugo/content`
+`cd blog && {新建, 编辑}`
 
 ## debug
 `cd hugo && hugo -t beg`
