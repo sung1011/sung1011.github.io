@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Linux release"
+date: 2017-04-02
 description: Linux-release.
 share: true
 tags:

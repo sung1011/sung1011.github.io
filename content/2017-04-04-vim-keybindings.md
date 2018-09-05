@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Vim-keybindings"
+date: 2017-04-04
 tags:
  - ide
 description: vim keybindings

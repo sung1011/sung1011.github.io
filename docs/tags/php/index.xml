@@ -5,6 +5,7 @@
     <link>https://sung1011.github.io/tags/php/</link>
     <description>Recent content in Php on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 06 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://sung1011.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
@@ -12,7 +13,7 @@
     <item>
       <title>Php-operation-mode</title>
       <link>https://sung1011.github.io/2017-04-06-php-operation-mode/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/2017-04-06-php-operation-mode/</guid>
       <description> code exec $源代码(人认识); // 执行源代码 exec $字节码(解释器认识); // 执行字节码 exec $机器码(硬件认识); // 执行机器码  php code exec *.php; // 执行php源代码 if(!exist($opcache)) { // 是否存在opcache字节码 init $opcode; // zend编译生成opcode字节码 $opcache = $opcode; // 生成opcache字节码缓存 } exec opcache; // php解释器执行opcache字节码缓存 exec 机器码; // 执行机器码  php jit  if(!exist(机器码)) { // 是否存在机器码 init 机器码; // jit编译生成机器码 } exec 机器码; // 执行机器码  </description>

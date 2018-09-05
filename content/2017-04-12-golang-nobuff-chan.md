@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "golang-grammer"
+date: 2017-04-12
 tags:
+- go
 description: golang chan
- - go
 description: go basic
 ---
 

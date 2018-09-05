@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Mongodb-command"
+title: Mongodb-command
+date: 2017-03-31
 tags:
  - db
 description: mongodb basic command

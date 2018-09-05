@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "golang-grammer"
+date: 2017-04-11
 tags:
     - go
 description: golang语法

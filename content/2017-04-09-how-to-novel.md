@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How-to-novel"
+date: 2017-04-09
 tags:
 - novel
 description: 如何写小说

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "encrypted"
+date: 2017-04-10
 tags:
  - basic
 description: 网络数据传输安全及SSH与HTTPS工作原理
