@@ -6,7 +6,7 @@ ls | grep -v hugo|grep -v deploy.sh|grep -v README.md | xargs rm -r
 cd hugo
 rm -r docs
 # Build the project.
-hugo -t slim # if using a theme, replace with `hugo -t <YOURTHEME>`
+hugo -t beg # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
 cp -r docs/* ../
