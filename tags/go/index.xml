@@ -5,16 +5,17 @@
     <link>https://sung1011.github.io/tags/go/</link>
     <description>Recent content in Go on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 14 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://sung1011.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Concurrent-and-parallel</title>
-      <link>https://sung1011.github.io/2017-04-10-go-cc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://sung1011.github.io/2017-04-14-go-cc/</link>
+      <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://sung1011.github.io/2017-04-10-go-cc/</guid>
+      <guid>https://sung1011.github.io/2017-04-14-go-cc/</guid>
       <description>go 并发与并行  并发（concurrency） 并发的关注点在于任务切分。举例来说，你是一个创业公司的CEO，开始只有你一个人，你一人分饰多角，一会做产品规划，一会写代码，一会见客户，虽然你不能见客户的同时写代码，但由于你切分了任务，分配了时间片，表现出来好像是多个任务一起在执行。
  并行（parallelism） 并行的关注点在于同时执行。还是上面的例子，你发现你自己太忙了，时间分配不过来，于是请了工程师，产品经理，市场总监，各司一职，这时候多个任务可以同时执行了。
   GreenThread
@@ -33,8 +34,18 @@
     
     <item>
       <title>golang-grammer</title>
+      <link>https://sung1011.github.io/2017-04-12-golang-nobuff-chan/</link>
+      <pubDate>Wed, 12 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sung1011.github.io/2017-04-12-golang-nobuff-chan/</guid>
+      <description>chan nobuff 一个基于无缓存Channels的发送操作将导致发送者goroutine阻塞，直到另一个goroutine在相同的 Channels上执行接收操作，当发送的值通过Channels成功传输之后，两个goroutine可以继续执行 后面的语句。反之，如果接收操作先发生，那么接收者goroutine也将阻塞，直到有另一个 goroutine在相同的Channels上执行发送操作。
+buff 带缓存的Channel内部持有一个元素队列。</description>
+    </item>
+    
+    <item>
+      <title>golang-grammer</title>
       <link>https://sung1011.github.io/2017-04-11-golang-grammer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/2017-04-11-golang-grammer/</guid>
       <description>Go基础语法，方便查阅

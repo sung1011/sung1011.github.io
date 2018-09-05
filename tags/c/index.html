@@ -1,191 +1,58 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-<meta name="pinterest" content="nopin">
-<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="generator" content="Hugo 0.40" />
+<html lang="">
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/tags/c/index.xml">
-
-<link rel="canonical" href="https://sung1011.github.io/tags/c/">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> C &middot; tickles </title>
 
 
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>C - tickles</title>
-    
-    <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
-    
+<link rel="stylesheet" href="https://sung1011.github.io/css/slim.css">
+<link rel="stylesheet" href="https://sung1011.github.io/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 
-  </head>
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
 
-  <body>
-    
-    
-    
 
-    <header class="l-header">
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="https://sung1011.github.io/">tickles</a>
-          </div>
+<link href="https://sung1011.github.io/tags/c/index.xml" rel="alternate" type="application/rss+xml" title="tickles" />
 
-          
+</head>
 
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <div class="container">
-        
-<div class="row">
-  <div class="col-md-8">
-
-    
-    <header class="page-header">
-      <h1>C</h1>
-    </header>
-    
-
-    <ul class="p-articles">
-      
-      <li><article class="li">
-  <header>
-    <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
-      
-      
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sung1011.github.io/">tickles</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
     </ul>
-    <h2 class="title"><a href="https://sung1011.github.io/2017-04-07-c-pointer/">C-pointer</a></h2>
-  </header>
-
-  
-  <div class="summary">前言:复杂类型说明 要了解指针,多多少少会出现一些比较复杂的类型,所以我先介绍一下如何完全理解一个复杂类型,要理解复杂类型其实很简单,一个类型里会出现很多运算符,他们也像普通的表达式一样,有优先级,其优先级和运算优先级一样,所以我总结了一下其原则:从变量名处起,根据运算符优先级结合,一步一步分析.下面让我们先从简单的类型开始慢慢分析吧:
-int p; //这是一个普通的整型变量 int *p; //首先从P 处开始,先与*结合,所以说明P 是一个指针,然后再与int 结合,说明指针所指向的内容的类型为int 型.所以P是一个返回整型数据的指针 int p[3]; //首先从P 处开始,先与[]结合,说明P 是一个数组,然后与int 结合,说明数组里的元素是整型的,所以P 是一个由整型数据组成的数组 int *p[3]; //首先从P 处开始,先与[]结合,因为其优先级比*高,所以P 是一个数组,然后再与*结合,说明数组里的元素是指针类型,然后再与int 结合,说明指针所指向的内容的类型是整型的,所以P 是一个由返回整型数据的指针所组成的数组 int (*p)[3]; //首先从P 处开始,先与*结合,说明P 是一个指针然后再与[]结合(与&quot;()&quot;这步可以忽略,只是为了改变优先级),说明指针所指向的内容是一个数组,然后再与int 结合,说明数组里的元素是整型的.所以P 是一个指向由整型数据组成的数组的指针 int **p; //首先从P 开始,先与*结合,说是P 是一个指针,然后再与*结合,说明指针所指向的元素是指针,然后再与int 结合,说明该指针所指向的元素是整型数据.由于二级指针以及更高级的指针极少用在复杂的类型中,所以后面更复杂的类型我们就不考虑多级指针了,最多只考虑一级指针. int p(int); //从P 处起,先与()结合,说明P 是一个函数,然后进入()里分析,说明该函数有一个整型变量的参数,然后再与外面的int 结合,说明函数的返回值是一个整型数据 Int (*p)(int); //从P 处开始,先与指针结合,说明P 是一个指针,然后与()结合,说明指针指向的是一个函数,然后再与()里的int 结合,说明函数有一个int 型的参数,再与最外层的int 结合,说明函数的返回类型是整型,所以P 是一个指向有一个整型参数且返回类型为整型的函数的指针 int *(*p(int))[3]; //可以先跳过,不看这个类型,过于复杂从P 开始,先与()结合,说明P 是一个函数,然后进入()里面,与int 结合,说明函数有一个整型变量参数,然后再与外面的*结合,说明函数返回的是一个指针,,然后到最外面一层,先与[]结合,说明返回的指针指向的是一个数组,然后再与*结合,说明数组里的元素是指针,然后再与int 结合,说明指针指向的内容是整型数据.所以P 是一个参数为一个整数据且返回一个指向由整型指针变量组成的数组的指针变量的函数.  说到这里也就差不多了,我们的任务也就这么多,理解了这几个类型,其它的类型对我们来说也是小菜了,不过我们一般不会用太复杂的类型,那样会大大减小程序的可读性,请慎用,这上面的几种类型已经足够我们用了.
-一、细说指针 指针是一个特殊的变量，它里面存储的数值被解释成为内存里的一个地址。要搞清一个指针需要搞清指针的四方面的内容：指针的类型、指针所指向的类型、指针的值或者叫指针所指向的内存区、指针本身所占据的内存区。让我们分别说明。
-先声明几个指针放着做例子： 例一：
-(1)int*ptr; (2)char*ptr; (3)int**ptr; (4)int(*ptr)[3]; (5)int*(*ptr)[4];  1.</div>
-
-  
-  <footer>
-    <a href="https://sung1011.github.io/2017-04-07-c-pointer/" title="C-pointer">Read More…</a>
-  </footer>
-  
-</article>
-</li>
-      
-    </ul>
-
-    
-
-
-  </div>
-  <div class="col-md-4">
-    
-<aside class="l-sidebar">
-
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">LATESTS</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://sung1011.github.io/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
-      
-      <a href="https://sung1011.github.io/2017-04-10-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
-      
-      <a href="https://sung1011.github.io/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
-      
-      <a href="https://sung1011.github.io/2017-04-02-linux-release/" class="list-group-item">Linux release</a>
-      
-      <a href="https://sung1011.github.io/2017-04-01-lock/" class="list-group-item">Lock</a>
-      
-      <a href="https://sung1011.github.io/2017-03-31-mongodb-command/" class="list-group-item">Mongodb-command</a>
-      
-      <a href="https://sung1011.github.io/2017-04-05-nginx-param-and-sign/" class="list-group-item">Nginx-param-and-sign</a>
-      
-      <a href="https://sung1011.github.io/2017-04-06-php-operation-mode/" class="list-group-item">Php-operation-mode</a>
-      
-      <a href="https://sung1011.github.io/2017-04-03-scale/" class="list-group-item">Scale</a>
-      
-      <a href="https://sung1011.github.io/2017-04-04-vim-keybindings/" class="list-group-item">Vim-keybindings</a>
-      
-    </div>
-  </section>
-
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">CATEGORY</div>
-    </div>
-    <div class="list-group">
-      
-    </div>
-  </section>
-  
-  <section class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">TAG</div>
-    </div>
-    <div class="list-group">
-      
-      <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
-      
-      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
-      
-      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
-      
-      <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
-      
-      <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
-      
-      <a href="https://sung1011.github.io/tags/fd" class="list-group-item">fd</a>
-      
-      <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
-      
-      <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
-      
-      <a href="https://sung1011.github.io/tags/novel" class="list-group-item">novel</a>
-      
-      <a href="https://sung1011.github.io/tags/php" class="list-group-item">php</a>
-      
-    </div>
-  </section>
-  
-
-</aside>
-
-
   </div>
 </div>
-
+    <div class="content">
+      <div class="posts">
+         
       </div>
-    </main>
+      <div class="pagination">
+   
+</div>
+    </div>
+    <div class="footer">
+  
+  <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+  
+</div>
 
-    <footer class="l-footer">
-      <div class="container">
-        <p><span class="h-logo">&copy; tickles</span></p>
-        <aside>
-          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
-          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
-        </aside>
-      </div>
-    </footer>
+  </div>
+  <script src="https://sung1011.github.io/js/slim.js"></script>
+  
 
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-  </body>
+</body>
+
 </html>
-

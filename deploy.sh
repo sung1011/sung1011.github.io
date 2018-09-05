@@ -2,16 +2,17 @@
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-rm -r docs/*
+ls | grep -v hugo|grep -v deploy.sh|grep -v README.md | xargs rm -r
+cd hugo
+rm -r docs
 # Build the project.
 hugo -t slim # if using a theme, replace with `hugo -t <YOURTHEME>`
 
 # Go To Public folder
-# cd docs
-# cp -rf ./* ../  # ！！！！！删除已经存在的文件夹
-ln -s docs/* .
-# cd ..
+cp -r docs/* ../
+
 # Add changes to git.
+cd ../
 git add .
 
 # Commit changes.

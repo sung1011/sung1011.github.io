@@ -5,6 +5,7 @@
     <link>https://sung1011.github.io/tags/ide/</link>
     <description>Recent content in Ide on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 04 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://sung1011.github.io/tags/ide/index.xml" rel="self" type="application/rss+xml" />
     
@@ -12,7 +13,7 @@
     <item>
       <title>Vim-keybindings</title>
       <link>https://sung1011.github.io/2017-04-04-vim-keybindings/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/2017-04-04-vim-keybindings/</guid>
       <description>vim 快捷键  vi（vim）是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。

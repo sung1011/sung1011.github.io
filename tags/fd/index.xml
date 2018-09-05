@@ -5,6 +5,7 @@
     <link>https://sung1011.github.io/tags/fd/</link>
     <description>Recent content in Fd on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 13 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://sung1011.github.io/tags/fd/index.xml" rel="self" type="application/rss+xml" />
     
@@ -12,7 +13,7 @@
     <item>
       <title>fd</title>
       <link>https://sung1011.github.io/2017-04-13-fd/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/2017-04-13-fd/</guid>
       <description>在Linux通用I/O模型中，I/O操作系列函数(系统调用)都是围绕一个叫做文件描述符的整数展开。这不禁让人产生疑问：这个整数代表什么？一个数值代表一个文件吗？随便传一个整数进去调用可以吗？
