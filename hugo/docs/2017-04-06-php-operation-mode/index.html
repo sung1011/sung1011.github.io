@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Php-operation-mode &middot; tickles </title>
+
+
+<link rel="stylesheet" href="https://sung1011.github.io/css/slim.css">
+<link rel="stylesheet" href="https://sung1011.github.io/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="tickles" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sung1011.github.io/">tickles</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="post">
+        <h2 class="post-title"><a href="https://sung1011.github.io/2017-04-06-php-operation-mode/">Php-operation-mode</a></h2>
+        <div class="post-content">
+          
+
+<h3 id="code">code</h3>
+
+<pre><code>exec $源代码(人认识); // 执行源代码
+
+exec $字节码(解释器认识); // 执行字节码
+
+exec $机器码(硬件认识); // 执行机器码
+</code></pre>
+
+<h3 id="php-code">php code</h3>
+
+<pre><code>exec *.php; // 执行php源代码
+
+if(!exist($opcache)) { // 是否存在opcache字节码
+
+    init $opcode; // zend编译生成opcode字节码
+
+    $opcache = $opcode; // 生成opcache字节码缓存
+
+} 
+
+exec opcache; // php解释器执行opcache字节码缓存
+
+exec 机器码; // 执行机器码
+</code></pre>
+
+<h3 id="php-jit">php jit</h3>
+
+<pre><code>
+if(!exist(机器码)) { // 是否存在机器码
+
+    init 机器码; // jit编译生成机器码
+
+}
+
+exec 机器码; // 执行机器码
+</code></pre>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+  
+  <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+  
+</div>
+
+  </div>
+  <script src="https://sung1011.github.io/js/slim.js"></script>
+  
+
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> Vim-sort &middot; tickles </title>
+
+
+<link rel="stylesheet" href="https://sung1011.github.io/css/slim.css">
+<link rel="stylesheet" href="https://sung1011.github.io/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="tickles" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://sung1011.github.io/">tickles</a></h1>
+  <p class="site-tagline"></p>
+  <div class="nav">
+    <a class="nav-btn" href="#">
+      <span class="ci ci-burger"></span>
+    </a>
+    <ul class="nav-list">
+       
+	  <li class="spacer">&ac;</li>
+  
+    </ul>
+  </div>
+</div>
+    <div class="content">
+      <div class="post">
+        <h2 class="post-title"><a href="https://sung1011.github.io/2017-04-08-vim-sort/">Vim-sort</a></h2>
+        <div class="post-content">
+          
+
+<h1 id="vim-sort">vim sort</h1>
+
+<h2 id="1-如果我们想以第4列数据进行排序-可以在vim中如此做">1：如果我们想以第4列数据进行排序，可以在vim中如此做：</h2>
+
+<pre><code>1，12!sort -r -n -k4.1,5
+</code></pre>
+
+<p>-r 是降序排序<br />
+-n 是按数字大小排序<br />
+-k,表示根据那个字段排序，4.1,表示第4列第一个字符开始 ，5表示到第5个字段为结束<br />
+-t 后面跟分隔符，缺省是空格</p>
+
+<h2 id="2-在vim里面-如果你要把从当前行以下20行按字母顺序排序">2：在VIM里面, 如果你要把从当前行以下20行按字母顺序排序</h2>
+
+<pre><code>只要输入:.,+20!sort
+</code></pre>
+
+<h2 id="3-用vi-來看log檔常要排序一下資料">3：用vi 來看log檔常要排序一下資料</h2>
+
+<p>可以用外部的sort 程式協助排序<br />
+令用法如下:</p>
+
+<pre><code>:1,$!sort -k 3
+</code></pre>
+
+<p>表示從第1列開始, 以第3 欄資料進行排序</p>
+
+<pre><code>:4,$!sort -k 3
+</code></pre>
+
+<p>表示從第4列開始, 以第3 欄資料進行排序 給有標題的文件用</p>
+
+<pre><code>:1,$!sort -k 4 -t&quot;.&quot;
+</code></pre>
+
+<p>表示從第1列開始, 以第8 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo;<br />
+結果會如下 :<br />
+192.168.1.20<br />
+192.168.1.218<br />
+192.168.1.22<br />
+218 竟然排在 22 的前面? 是因為以&rdquo;文字順序&rdquo;排序的關係</p>
+
+<pre><code>:1,$!sort -k 4 -t&quot;.&quot; -n
+</code></pre>
+
+<p>表示從第1列開始, 以第4 欄資料進行排序, 分欄字元是 &ldquo;.&rdquo; , 並且依數字大小而非文字順序排序<br />
+結果會改變如下<br />
+192.168.1.20<br />
+192.168.1.23<br />
+192.168.1.218</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+  
+  <p>Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.</p>
+  
+</div>
+
+  </div>
+  <script src="https://sung1011.github.io/js/slim.js"></script>
+  
+
+</body>
+
+</html>
