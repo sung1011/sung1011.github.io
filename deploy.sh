@@ -2,7 +2,7 @@
 
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-ls | grep -v hugo | grep -v deploy.sh | grep -v README.md | grep -v blog | xargs rm -r
+ls | grep -v hugo | grep -v deploy.sh | grep -v README.md | grep -v blog | grep -v Makefile | xargs rm -r
 cd hugo
 rm -r docs
 # Build the project.
