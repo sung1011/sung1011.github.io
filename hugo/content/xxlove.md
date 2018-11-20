@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "XX-love"
-date: 2017-04-15
+date: 
 tags:
 - love
 description: 写给老婆的一封信

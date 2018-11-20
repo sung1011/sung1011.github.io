@@ -5,7 +5,7 @@
     <link>https://sung1011.github.io/tags/</link>
     <description>Recent content in Tags on tickles</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 13 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://sung1011.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +13,7 @@
     <item>
       <title>Basic</title>
       <link>https://sung1011.github.io/tags/basic/</link>
-      <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/tags/basic/</guid>
       <description></description>
@@ -74,6 +74,15 @@
     </item>
     
     <item>
+      <title>Io</title>
+      <link>https://sung1011.github.io/tags/io/</link>
+      <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sung1011.github.io/tags/io/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Linux</title>
       <link>https://sung1011.github.io/tags/linux/</link>
       <pubDate>Thu, 13 Apr 2017 00:00:00 +0000</pubDate>
@@ -85,7 +94,7 @@
     <item>
       <title>Love</title>
       <link>https://sung1011.github.io/tags/love/</link>
-      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://sung1011.github.io/tags/love/</guid>
       <description></description>

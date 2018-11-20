@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://sung1011.github.io/tags/io/index.xml">
+
+<link rel="canonical" href="https://sung1011.github.io/tags/io/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Io - tickles</title>
+    
+    <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://sung1011.github.io/">tickles</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    
+    <header class="page-header">
+      <h1>Io</h1>
+    </header>
+    
+
+    <ul class="p-articles">
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-16T00:00:00JST">Apr 16, 2017</time></li>
+      
+      
+    </ul>
+    <h2 class="title"><a href="https://sung1011.github.io/2017-04-16-io/">Io</a></h2>
+  </header>
+
+  
+  <div class="summary">关于网络IO中的同步、异步、阻塞、非阻塞 ====================
+在高并发编程当中，我们经常会遇到一些异步、非阻塞等一些概念，一些常用的技术比如异步的httpclient、netty nio、nginx、node.js等，它们的原理大都跟异步、非阻塞有关。特别是在服务器开发中，并发的请求处理是个大问题，阻塞式的函数会导致资源浪费和时间延迟。通过事件注册、异步函数，开发人员可以提高资源的利用率，性能也会改善。其nginx和node.js处理并发都是采用的事件驱动异步非阻塞模式。其中nginx中处理并发用的是epoll，poll,queue等方式，node.js使用的是libev，它们对大规模的HTTP请求处理的都很好。
+那么到底什么是异步、非阻塞，它们的原理是什么，它们之间又有什么区别呢？其实在很多情况下，异步与非阻塞(同步与阻塞)表示的是同一个意思，但是在特定的上下文环境中，它们含义又十分不同。再具体讲它们的区别之前，先介绍一下上下文背景。
+一、上下文背景 我们所遇到的这些场景大部分都是当用户进程（或线程）在进行网络IO时即进行Socket读写时遇到的，所以本文讨论的上下文背景是基于Linux环境下的network IO。先介绍一下其中我们最常见的五种IO：
+1. blocking IO 2. nonblocking IO 3. IO multiplexing 4. signal driven IO 5. asynchronous IO  由于signal driven IO在实际中并不常用，所以我这只提及剩下的四种IO Model。
+再说一下IO发生时涉及的对象和步骤。对于一个network IO (这里我们以read举例)，它会涉及到两个系统对象，一个是调用这个IO的进程(或线程)，另一个就是系统内核(kernel)。当一个read操作发生时，它会经历两个阶段：
+ 等待数据准备(Waiting for the data to be ready) 将数据从内核拷贝到进程中 (Copying the data from the kernel to the process)  记住这两点很重要，因为这些IO Model的区别就是在两个阶段上各有不同的情况。
+二、各种IO介绍 2.1 blocking IO 在linux中，默认情况下所有的socket都是blocking，也就是说我们的一个进程在进行IO操作时如果没有数据达到，这个进程是被阻塞的。一个典型的读操作流程大概是这样：
+当用户进程调用了recvfrom这个系统调用，kernel就开始了IO的第一个阶段：准备数据。对于network io来说，很多时候数据在一开始还没有到达（比如，还没有收到一个完整的UDP包），这个时候kernel就要等待足够的数据到来。而在用户进程这边，整个进程会被阻塞。当kernel一直等到数据准备好了，它就会将数据从kernel中拷贝到用户内存，然后kernel返回结果，用户进程才解除block的状态，重新运行起来。所以，blocking IO的特点就是在IO执行的wait和copy两个阶段都被block了。
+在这种block IO的情况下，如果请求的连接比较多，但其中大部分都是阻塞的。因为cpu的核数是有限的，所以一般的解决方案就是每个cpu启用多个线程来处理多个连接。这种解决方案有很大的缺陷：
+1. 线程是有内存开销的，1个线程可能需要512K（或2M）存放栈，那么1000个线程就要512M（或2G）内存 2. 线程的切换开销和很大，因为线程切换时需要保持当前线程上下文信息，当大量时间花在上下文切换的时候，分配给真正的操作的CPU就要少很多 3. 一个cpu所支持的线程数量时有限的（因为上面两个原因），一般来说线程的数量级在几百个左右就已经很大了  为了解决block IO存在的问题，就引入了no-blocking IO概念。</div>
+
+  
+  <footer>
+    <a href="https://sung1011.github.io/2017-04-16-io/" title="Io">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+    </ul>
+
+    
+
+
+  </div>
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://sung1011.github.io/2017-04-16-io/" class="list-group-item">Io</a>
+      
+      <a href="https://sung1011.github.io/2017-04-15-lvs-ha-nginx/" class="list-group-item">Lvs-Nginx-HAproxy</a>
+      
+      <a href="https://sung1011.github.io/2017-04-14-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="https://sung1011.github.io/2017-04-13-fd/" class="list-group-item">fd</a>
+      
+      <a href="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/" class="list-group-item">golang-grammer</a>
+      
+      <a href="https://sung1011.github.io/2017-04-11-golang-grammer/" class="list-group-item">golang-grammer</a>
+      
+      <a href="https://sung1011.github.io/2017-04-10-encrypted/" class="list-group-item">encrypted</a>
+      
+      <a href="https://sung1011.github.io/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="https://sung1011.github.io/2017-04-08-vim-sort/" class="list-group-item">Vim-sort</a>
+      
+      <a href="https://sung1011.github.io/2017-04-07-c-pointer/" class="list-group-item">C-pointer</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
+      
+      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
+      
+      <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
+      
+      <a href="https://sung1011.github.io/tags/fd" class="list-group-item">fd</a>
+      
+      <a href="https://sung1011.github.io/tags/haproxy" class="list-group-item">haproxy</a>
+      
+      <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="https://sung1011.github.io/tags/io" class="list-group-item">io</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; tickles</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
