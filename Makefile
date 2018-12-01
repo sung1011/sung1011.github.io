@@ -3,7 +3,7 @@ project_root:=$(CURDIR)
 .PHONY: help debug build
 
 help:
-	@echo "make build         -- 编译"
+	@echo "make build         -- 构建"
 	@echo "make debug         -- 本地调试"
 
 build:
