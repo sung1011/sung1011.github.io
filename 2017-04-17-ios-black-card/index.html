@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.40" />
+
+
+
+<link rel="canonical" href="https://sung1011.github.io/2017-04-17-ios-black-card/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Ios-black-card - tickles</title>
+    
+<meta name="description" content="苹果充值常见的刷单手段和防范方法">
+
+<meta property="og:title" content="Ios-black-card - tickles">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sung1011.github.io/2017-04-17-ios-black-card/">
+<meta property="og:image" content="https://sung1011.github.io/images/default.png">
+<meta property="og:site_name" content="tickles">
+<meta property="og:description" content="苹果充值常见的刷单手段和防范方法">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tickles">
+<meta name="twitter:url" content="https://sung1011.github.io/2017-04-17-ios-black-card/">
+<meta name="twitter:title" content="Ios-black-card - tickles">
+<meta name="twitter:description" content="苹果充值常见的刷单手段和防范方法">
+<meta name="twitter:image" content="https://sung1011.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://sung1011.github.io/"
+    },
+    "headline": "Ios-black-card - tickles",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://sung1011.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2017-04-17T00:00:00JST",
+    "dateModified": "2017-04-17T00:00:00JST",
+    "author": {
+      "@type": "Person",
+      "name": "tickles"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "tickles",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sung1011.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "苹果充值常见的刷单手段和防范方法"
+  }
+</script>
+
+
+    <link href="https://sung1011.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://sung1011.github.io/">tickles</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://sung1011.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">Ios-black-card</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2017-04-17T00:00:00JST">Apr 17, 2017</time></li>
+      
+      
+    </ul>
+
+    <h1 class="title">Ios-black-card</h1>
+  </header>
+
+  
+
+  <div class="article-body">
+
+<p>苹果充值的刷单现象在游戏行业非常普遍，很多团队挖空心思寻找漏洞以非法获利。遭遇刷单的开发者虽然在账面上看到的是漂亮的流水数字，但是苹果不会对问题账单分成，造成坏账，据传严重时有些游戏的坏账率达到80%以上。常见的手段主要有以下五种：</p>
+
+<ul>
+<li>破解IAP绕过苹果扣款</li>
+<li>重复使用receipt-data</li>
+<li>利用信用卡黑卡</li>
+<li>利用外币卡折扣赚取差价</li>
+<li>利用苹果对小额消费不做验证规则的&rdquo;36技术&rdquo;</li>
+</ul>
+
+<p>其中，前两种是开发者本身的程序问题，可通过完善代码中的验证流程解决，后三种则是利用了苹果充值的政策的一些漏洞。但是这些漏洞并不会对苹果造成损失，所以苹果对此也没有修改的想法，解决问题还是要靠开发者发挥聪明才智，依靠数据分析制定妥善的防御策略。</p>
+
+<p>下面逐个介绍五种手段的原理和防范方法。</p>
+
+<h3 id="1-破解iap绕过苹果扣款">1 破解IAP绕过苹果扣款</h3>
+
+<p>常见于单机游戏，首先看看苹果充值的时序图：</p>
+
+<p><img src="https://img-blog.csdn.net/20160927175819771" alt="" /></p>
+
+<p>客户端请求购买，AppStore处理扣款，如果成功返回给客户端名为receipt-data的数据，安全的处理流程是把这段数据发到服务端，由服务端发起请求，调用苹果验单接口验证receipt-data的有效性。</p>
+
+<p>有些游戏，常见于单机游戏，直接在客户端发起对苹果验单接口的调用，甚至跳过3~7步骤直接处理发货。那么非法用户可以利用插件，如iAP Cracker，在客户端请求购买后，模拟返回扣款成功。客户端的数据都是不安全的，即使在客户端验证了receipt-data，得到的结果也可能是被篡改的。</p>
+
+<p>防范这种刷单的方法是严格执行3~7步骤，通过服务器端验证receipt-data的有效性。</p>
+
+<h3 id="2-重复使用receipt-data">2 重复使用receipt-data</h3>
+
+<p>这种问题发生的原因是虽然已经用安全的方式检查了receipt-data的有效性，但是没有检查receipt-data的唯一性。苹果验单接口返回的数据格式如下：</p>
+
+<p><img src="https://img-blog.csdn.net/20160927200550677" alt="" /></p>
+
+<p>数据为json格式，其中status值为0表示该receipt有效，但是苹果只负责真假，而不负责检查是否已被使用过。同一个有效的receipt，无论多少次、相隔多少时间去苹果接口验证，都会返回成功。如果只检查了&rdquo;status&rdquo;:0即发货，则非法用户可以先真实充值一笔，截取到receipt-data后，再多次使用到购买中骗过服务器端验证。</p>
+
+<p>防范的方法是在确定status值为0后，进一步解析出数据中的transaction_id并存入数据库。每次发货前先检查数据库中是否已经有本次的transaction_id存在，如果已存在则拒绝发货。</p>
+
+<p>还有一种情况需要注意，有些游戏购买前先有一步创建订单的行为，在服务器端记录购买的商品、时间等，且发货时是按照订单记录中的商品，那么需要比较苹果返回信息中的product_id与订单表中的记录值是否一致。</p>
+
+<h3 id="3-利用信用卡黑卡">3 利用信用卡黑卡</h3>
+
+<p>这是最常见的刷单手段，是指用户利用无效信用卡，在AppStore中进行消费，由于信用卡已在银行冻结，因此银行不会将款项结算给苹果，苹果自然也不会分成给开发者。</p>
+
+<p>通常的形式是用户去交易网站找代充，代充的商家用绑定了黑卡的AppleID给用户的账号充值，并收取远低于正常价格的金额。也有的代充商户是召集大量的非游戏用户接单，给指定的账号充值后再申请退款，并给这些参与者一定返利来达到“共赢”。</p>
+
+<p><img src="https://img-blog.csdn.net/20160927203008858" alt="" /></p>
+
+<p>对于这种情况，除了寄望于苹果更严格的审核信用卡信息外，开发者还可以通过监控和分析数据尽可能减小损失。对于最常见的代充形式，我们可以推测：</p>
+
+<p>a. 用户充值时不在自己的常用设备上，而是由商户在自有设备上操作</p>
+
+<p>b. 商户的充值设备可能为多个账号充值</p>
+
+<p>分析用户的常用设备可以通过用户日常的游戏记录，如果只有在充值时会切换到不常用设备上，那么可以判定为可疑用户。如果某些设备只在充值记录中出现，却不属于任何用户的常用设备，那么使用这些设备充值的用户也可以判定为可疑用户。</p>
+
+<p>对可疑用户可以进一步分析，确定后执行扣除非法所得、封停账号等。</p>
+
+<h3 id="4-利用外币卡折扣赚取差价">4 利用外币卡折扣赚取差价</h3>
+
+<p>这是一种需要天时的刷单手段。在一些新兴市场，如墨西哥、土耳其等，苹果有专门的优惠折扣，使用这些货币充值，折扣后的差额即刷单的获利。还有一种情况是利用汇率的变化，如著名的南非币事件。</p>
+
+<p>防范这种手段也很简单，客户端获取用户支付使用的货币类型发给服务器验证，在服务器端建立货币白名单，只允许使用人民币或稳定的国家和地区的货币支付。</p>
+
+<h3 id="5-利用苹果对小额消费不做验证规则的-36技术">5 利用苹果对小额消费不做验证规则的&rdquo;36技术&rdquo;</h3>
+
+<p>这是一种更有技术含量的手段，利用苹果对信用卡的小额消费不做验证的规则，并使用自动注册的虚拟信用卡完成绑卡。用户发起购买后，苹果不确认扣款即返回给客户端成功信息，而此后再进行信用卡扣款时，会出现扣不到钱的情况。</p>
+
+<p>从开发者的角度来看，这笔订单是真实有效的，receipt-data也能通过苹果服务器的验证，但是最终苹果不会对这些账单分账。</p>
+
+<p>相比传统的黑卡，这种方式实现了自动化处理，刷单效率很高，对开发者造成的损失更大。特别是具有交易功能的游戏，刷单者大量充值，然后在游戏内换成货币或道具低价售卖给普通玩家。</p>
+
+<p>对于这种手段，目前开发者能做的就是监控用户的异常充值行为，对于频繁小额充值的用户予以限制。手游中，常见的小额商品就是6元和30元商品，也可以直接限制这些小额商品每用户每日的购买次数，来尽可能减少损失。</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://sung1011.github.io/tags/sdk/">sdk</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "Your Disqus shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://sung1011.github.io/2017-04-17-ios-black-card/" class="list-group-item">Ios-black-card</a>
+      
+      <a href="https://sung1011.github.io/2017-04-16-io/" class="list-group-item">Io</a>
+      
+      <a href="https://sung1011.github.io/2017-04-15-lvs-ha-nginx/" class="list-group-item">Lvs-Nginx-HAproxy</a>
+      
+      <a href="https://sung1011.github.io/2017-04-14-go-cc/" class="list-group-item">Concurrent-and-parallel</a>
+      
+      <a href="https://sung1011.github.io/2017-04-13-fd/" class="list-group-item">fd</a>
+      
+      <a href="https://sung1011.github.io/2017-04-12-golang-nobuff-chan/" class="list-group-item">golang-grammer</a>
+      
+      <a href="https://sung1011.github.io/2017-04-11-golang-grammer/" class="list-group-item">golang-grammer</a>
+      
+      <a href="https://sung1011.github.io/2017-04-10-encrypted/" class="list-group-item">encrypted</a>
+      
+      <a href="https://sung1011.github.io/2017-04-09-how-to-novel/" class="list-group-item">How-to-novel</a>
+      
+      <a href="https://sung1011.github.io/2017-04-08-vim-sort/" class="list-group-item">Vim-sort</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://sung1011.github.io/tags/basic" class="list-group-item">basic</a>
+      
+      <a href="https://sung1011.github.io/tags/go" class="list-group-item">go</a>
+      
+      <a href="https://sung1011.github.io/tags/linux" class="list-group-item">linux</a>
+      
+      <a href="https://sung1011.github.io/tags/nginx" class="list-group-item">nginx</a>
+      
+      <a href="https://sung1011.github.io/tags/c" class="list-group-item">c</a>
+      
+      <a href="https://sung1011.github.io/tags/db" class="list-group-item">db</a>
+      
+      <a href="https://sung1011.github.io/tags/fd" class="list-group-item">fd</a>
+      
+      <a href="https://sung1011.github.io/tags/haproxy" class="list-group-item">haproxy</a>
+      
+      <a href="https://sung1011.github.io/tags/ide" class="list-group-item">ide</a>
+      
+      <a href="https://sung1011.github.io/tags/io" class="list-group-item">io</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; tickles</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
